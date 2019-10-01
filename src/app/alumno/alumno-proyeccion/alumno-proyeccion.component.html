@@ -1,48 +1,50 @@
 <div class="container-fluid my-5">
-  
-    <div class="col-12">
-      <div class="row mx-5">
-        <div class="h3 text-center mx-auto">
-          Proyección de cursos
-        </div>
-      </div>
-      <div class="row my-5">
-          <table class="table table-hover">
-              <thead class="thead-dark">
-                <tr>
-                  <th scope="col">Materia</th>
-                  <th scope="col">Clave</th>
-                  <th scope="col">NRC</th>
-                  <th scope="col">Seleccionar</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <th scope="row">Probabilidad y Estadística</th>
-                  <td>12560</td>
-                  <td>PE12560</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row">Servicio Social</th>
-                  <td>14970</td>
-                  <td>SS14970</td>
-                  <td></td>
-                </tr>
-                <tr>
-                  <th scope="row">Tratamiento de la Información</th>
-                  <td>13490</td>
-                  <td>TI13490</td>
-                  <td></td>
-                </tr>
-              </tbody>
-            </table>
-      </div>
-      <div class="row">
-        <button type="button" class="btn btn-outline-primary text-center mx-auto">
-          Guardar
-        </button>
+
+  <div class="col-12">
+    <div class="row mx-5">
+      <div class="h3 text-center mx-auto">
+        Proyección de cursos
       </div>
     </div>
-  
+    <div class="row my-4">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Seleccionar</th>
+            <th scope="col">Materia</th>
+            <th scope="col">Clave</th>
+            <th scope="col">NRC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of countries">
+            <th scope="row">{{ country.id }}</th>
+            <td>
+              <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"
+                style="width: 20px">
+              {{ country.name }}
+            </td>
+            <td>{{ country.area | number}}</td>
+            <td>{{ country.population | number }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-1">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+          <option [ngValue]="6">6 materias por página</option>
+          <option [ngValue]="10">10 materias por página</option>
+          <option [ngValue]="15">15 materias por página</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <button type="button" class="btn btn-outline-primary text-center mx-auto">
+        Guardar
+      </button>
+    </div>
+  </div>
 </div>

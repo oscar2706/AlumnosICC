@@ -4,13 +4,15 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavBarCoordinadorComponent } from './nav-bar-coordinador/nav-bar-coordinador.component';
+import { LateralComponent } from './lateral/lateral.component';
+import { PrincipalComponent } from './principal/principal.component';
 
 
 @NgModule({
-  declarations: [BusquedaComponent, NavBarCoordinadorComponent],
+  declarations: [BusquedaComponent, NavBarCoordinadorComponent, LateralComponent, PrincipalComponent],
   imports: [
     CommonModule, FormsModule,ReactiveFormsModule,NgbModule
   ], 
-  exports:[BusquedaComponent,NavBarCoordinadorComponent] 
+  exports:[BusquedaComponent,NavBarCoordinadorComponent,LateralComponent] 
 })
 export class CoordinadorModule { }

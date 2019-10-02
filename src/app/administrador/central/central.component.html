@@ -1,3 +1,54 @@
-<p>
-  central works!
-</p>
+<div class="container-fluid my-5">
+<div class="row">
+  <div class="col-lg-8 offset-md-1">
+    <div class="row mx-5">
+      <div class="h3 text-center mx-auto">
+        Alumnos por sección
+      </div>
+    </div>
+    <div class="row my-3">
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="4">4 alumnos por página</option>
+        <option [ngValue]="6">6 alumnos por página</option>
+        <option [ngValue]="10">10 alumnos por página</option>
+      </select>
+    </div>
+    <div class="row my-5">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Seleccionar</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Matricula</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of countries">
+            <th scope="row">{{ country.id }}</th>
+            <td>
+             
+              {{ country.name }}
+            </td>
+            <td>{{ country.area | number}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-1">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+
+        
+      </div>
+      
+    </div>
+
+  </div>
+
+<div class="col align-self-center offset-md-1 ">
+    <button type="button" class="btn btn-outline-info text-center mx-auto">
+        Restablecer
+      </button>
+</div>
+</div>
+</div>

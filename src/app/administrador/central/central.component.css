@@ -1,0 +1,4 @@
+ngb-pagination .page-item.active .page-link {
+    background-color: #888888;
+    border-color: #7468ee;
+  }

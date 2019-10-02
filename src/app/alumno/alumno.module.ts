@@ -8,10 +8,14 @@ import { AlumnoPanelComponent } from './alumno-panel/alumno-panel.component';
 import { AlumnoProyeccionComponent } from './alumno-proyeccion/alumno-proyeccion.component';
 import { AlumnoMateriasComponent } from './alumno-materias/alumno-materias.component';
 import { AlumnoMateriaComponent } from './alumno-materia/alumno-materia.component';
+import { AlumnoOptativasComponent } from './alumno-optativas/alumno-optativas.component';
+import { AlumnoVentanaMateriasComponent } from './alumno-ventana-materias/alumno-ventana-materias.component';
+import { AlumnoVentanaOptativasComponent } from './alumno-ventana-optativas/alumno-ventana-optativas.component';
+import { AlumnoVentanaProyeccionComponent } from './alumno-ventana-proyeccion/alumno-ventana-proyeccion.component';
 
 
 @NgModule({
-  declarations: [AlumnoNavBarComponent, AlumnoPanelComponent, AlumnoProyeccionComponent, AlumnoMateriasComponent, AlumnoMateriaComponent],
+  declarations: [AlumnoNavBarComponent, AlumnoPanelComponent, AlumnoProyeccionComponent, AlumnoMateriasComponent, AlumnoMateriaComponent, AlumnoOptativasComponent, AlumnoVentanaMateriasComponent, AlumnoVentanaOptativasComponent, AlumnoVentanaProyeccionComponent],
   imports: [
     CommonModule, NgbModule, FormsModule, ReactiveFormsModule
   ],

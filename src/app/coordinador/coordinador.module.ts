@@ -13,6 +13,6 @@ import { PrincipalComponent } from './principal/principal.component';
   imports: [
     CommonModule, FormsModule,ReactiveFormsModule,NgbModule
   ], 
-  exports:[BusquedaComponent,NavBarCoordinadorComponent,LateralComponent] 
+  exports:[BusquedaComponent,NavBarCoordinadorComponent,LateralComponent,PrincipalComponent] 
 })
 export class CoordinadorModule { }

@@ -26,6 +26,6 @@ import { AlumnoVentanaProyeccionComponent } from "./alumno-ventana-proyeccion/al
     AlumnoVentanaProyeccionComponent
   ],
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule],
-  exports: [AlumnoVentanaProyeccionComponent]
+  exports: [AlumnoVentanaMateriasComponent, AlumnoVentanaOptativasComponent, AlumnoVentanaProyeccionComponent]
 })
 export class AlumnoModule {}

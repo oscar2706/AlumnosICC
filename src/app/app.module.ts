@@ -8,10 +8,12 @@ import { CoordinadorModule } from './coordinador/coordinador.module';
 import { TutorModule } from './tutor/tutor.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

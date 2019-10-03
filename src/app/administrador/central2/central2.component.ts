@@ -10,61 +10,61 @@ interface Country {
 const COUNTRIES: Country[] = [
   {
     name: 'Otoño 2016',
-    area: 17075200,
-    materia: 244444,
-    materia2: 4
+    area: 17,
+    materia: 5,
+    materia2: 8
   },
   {
     name: 'Primavera 2017',
-    area: 640679,
-    materia: 2,
-    materia2: 4
+    area: 25,
+    materia: 5,
+    materia2: 3
   },
   {
     name: 'Verano 2017',
-    area: 357114,
+    area: 35,
     materia: 2,
     materia2: 4
   },
   {
     name: 'Otoño 2017',
-    area: 92090,
+    area: 36,
     materia: 2,
     materia2: 4
   },
   {
     name: 'Primavera 2018',
-    area: 9976140,
-    materia: 2,
+    area: 14,
+    materia: 6,
     materia2: 4
   },
   {
     name: 'Verano 2018',
-    area: 331212,
+    area: 33,
     materia: 2,
     materia2: 4
   },
   {
     name: 'Otoño 2018',
-    area: 8515767,
+    area: 15,
     materia: 2,
     materia2: 4
   },
   {
     name: 'Primavera 2019',
-    area: 1964375,
-    materia: 2,
+    area: 19,
+    materia: 8,
     materia2: 4
   },
   {
     name: 'Verano 2019',
-    area: 9629091,
-    materia: 2,
+    area: 21,
+    materia: 6,
     materia2: 4
   },
   {
     name: 'Otoño 2019',
-    area: 3287263,
+    area: 32,
     materia: 2,
     materia2: 4
   },

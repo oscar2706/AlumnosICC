@@ -10,31 +10,32 @@ import { map, startWith } from 'rxjs/operators';
 interface Country {
   name: string;
   flag: string;
-
 }
+
 
 const COUNTRIES: Country[] = [
   {
-    name: 'Russia',
+    name: 'Abraham Sanchez',
     flag: 'f/f3/Flag_of_Russia.svg',
 
   },
   {
-    name: 'Canada',
+    name: 'Carlos Armando Rios',
     flag: 'c/cf/Flag_of_Canada.svg',
   
   },
   {
-    name: 'United States',
+    name: 'Josfina Guerrero Garcia',
     flag: 'a/a4/Flag_of_the_United_States.svg',
   
   },
   {
-    name: 'China',
+    name: 'Bernardo Parra',
     flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
 
   }
 ];
+
 
 function search(text: string, pipe: PipeTransform): Country[] {
   return COUNTRIES.filter(country => {

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 
 interface Alumno {
   matricula: string,
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('')
   });
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
     if(this.alumnoPrueba.matricula == this.loginForm.value.user && this.alumnoPrueba.password == this.loginForm.value.password)
     {
       console.log("Acceso Permitido");
+      this.router.navigate(['/alumno/materias']);
     }
     else
     {

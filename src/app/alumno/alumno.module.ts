@@ -12,6 +12,7 @@ import { AlumnoOptativasComponent } from "./alumno-optativas/alumno-optativas.co
 import { AlumnoVentanaMateriasComponent } from "./alumno-ventana-materias/alumno-ventana-materias.component";
 import { AlumnoVentanaOptativasComponent } from "./alumno-ventana-optativas/alumno-ventana-optativas.component";
 import { AlumnoVentanaProyeccionComponent } from "./alumno-ventana-proyeccion/alumno-ventana-proyeccion.component";
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { AlumnoVentanaProyeccionComponent } from "./alumno-ventana-proyeccion/al
     AlumnoVentanaOptativasComponent,
     AlumnoVentanaProyeccionComponent
   ],
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
   exports: [AlumnoVentanaMateriasComponent, AlumnoVentanaOptativasComponent, AlumnoVentanaProyeccionComponent]
 })
 export class AlumnoModule {}

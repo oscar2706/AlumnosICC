@@ -8,9 +8,10 @@ import { Central2Component } from './central2/central2.component';
 import { ResetPasswdComponent } from './reset-passwd/reset-passwd.component';
 import { ProyeccionesComponent } from './proyecciones/proyecciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BarleftAdmComponent } from './barleft-adm/barleft-adm.component';
 
 @NgModule({
-  declarations: [NavbarComponent, BarLeftComponent, CentralComponent,Central2Component,ResetPasswdComponent,ProyeccionesComponent],
+  declarations: [NavbarComponent, BarLeftComponent, CentralComponent,Central2Component,ResetPasswdComponent,ProyeccionesComponent, BarleftAdmComponent],
   imports: [
     CommonModule, NgbModule,FormsModule, ReactiveFormsModule
   ],

@@ -19,8 +19,13 @@ export class LoginComponent implements OnInit {
   successMessage: string;
 
   alumnoPrueba: Alumno = { matricula: "201739995", password: "football26398" };
-  accesoPermitido = 0;
+  usuarios = [
+    {usuario: 'Alumno', value: 1},
+    {usuario: 'Tutor', value: 2},
+    {usuario: 'Coordinador', value: 3},
+    {usuario: 'Administrador', value: 4}];
   loginForm = new FormGroup({
+    usuarioSeleccionado: new FormControl(this.usuarios),
     user: new FormControl(''),
     password: new FormControl('')
   });
@@ -32,14 +37,28 @@ export class LoginComponent implements OnInit {
     this._success.pipe(
       debounceTime(5000)
     ).subscribe(() => this.successMessage = null);
+    this.loginForm.controls.usuarioSeleccionado.setValue(1);
   }
 
   login() {
-    if (this.alumnoPrueba.matricula == this.loginForm.value.user && this.alumnoPrueba.password == this.loginForm.value.password) {
-      this.router.navigate(['/alumno/materias']);
-    }
-    else {
-      this._success.next("Usuario o Contraseña Incorrecta");
+    switch (this.loginForm.value.usuarioSeleccionado) {
+      case 1:
+        if (this.alumnoPrueba.matricula == this.loginForm.value.user && this.alumnoPrueba.password == this.loginForm.value.password) {
+          this.router.navigate(['/alumno/materias']);
+        }
+        else {
+          this._success.next("Usuario o Contraseña Incorrecta");
+        }
+        break;
+      case 2:
+        this._success.next("Usuario o Contraseña Incorrecta");
+        break;
+      case 3:
+          this._success.next("Usuario o Contraseña Incorrecta");
+        break;
+      case 4:
+          this._success.next("Usuario o Contraseña Incorrecta");
+        break;
     }
   }
 }

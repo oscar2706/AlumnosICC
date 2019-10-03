@@ -25,11 +25,8 @@
             <div class="card-text">
               <div class="row my-3">
                 <div class="col-12">
-                  <select class="custom-select">
-                    <option value="Alumno" selected>Alumno</option>
-                    <option value="Tutor">Tutor</option>
-                    <option value="Coordinador">Coordinador</option>
-                    <option value="Administrador">Administrador</option>
+                  <select class="custom-select" formControlName="usuarioSeleccionado">
+                    <option class="custom-select" *ngFor="let usuario of usuarios" [ngValue]="usuario.value">{{usuario.usuario}}</option>
                   </select>
                 </div>
               </div>

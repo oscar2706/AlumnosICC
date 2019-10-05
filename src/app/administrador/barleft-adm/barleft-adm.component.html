@@ -6,37 +6,46 @@
       <div class="form">
     <div class="card-text">
       <div class="row my-4">
-          <div class="col-4 h5">
-              Periodo:
+          <div class="col-sm-12 col-lg-5 col-md-5 h5">
+             Periodo
             </div>
+            <div class="col-sm-12 col-lg-7 col-md-7 h5">
             <div class="dropdown">
                 <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Elige un periodo
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Otoño</a>
-                  <a class="dropdown-item" href="#">Primavera</a>
-                  <a class="dropdown-item" href="#">Verano</a>
+                  <a class="dropdown-item" >Otoño</a>
+                  <a class="dropdown-item" >Primavera</a>
+                  <a class="dropdown-item" >Verano</a>
                 </div>
               </div>
-              <div class="col-2 h5">
-                  Año:
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Elige un año
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                      <a class="dropdown-item" href="#">2020</a>
-                    </div>
-                  </div>
+            </div>
       </div>
 
       <div class="row my-4">
-          <div class="col-5 h5">
+          <div class="col-sm-12 col-lg-5 col-md-5 h5">
+              Año
+            </div>
+            <div class="col-sm-12 col-lg-7 col-md-7 h5">
+            <div class="dropdown">
+                <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Elige un año
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" >2020</a>
+                </div>
+              </div>
+            </div>
+      </div>
+
+      
+
+      <div class="row my-4">
+          <div class="col-sm-12 col-lg-5 col-md-5 h5">
           Fecha de inicio:
           </div>
-        <div class="col-7 h5">
+        <div class="col-sm-12 col-lg-7 col-md-6 h5">
             <div class="form-group">
                 <div class="input-group">
                   <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
@@ -50,20 +59,20 @@
       </div>
 
       <div class="row my-4">
-          <div class="col-5 h5">
+          <div class="col-sm-12 col-lg-5 col-md-5 h5">
           Fecha de Fin:
           </div>
-          <div class="col-7 h5">
-          <div class="form-group">
-              <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                  #d="ngbDatepicker">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        <div class="col-sm-12 col-lg-7 col-md-6 h5">
+            <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
+        </div>
       </div>
 
         <button type="button" class="btn btn-outline-info text-center mx-auto">

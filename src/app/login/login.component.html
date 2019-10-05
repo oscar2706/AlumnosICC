@@ -25,7 +25,7 @@
             <div class="card-text">
               <div class="row my-3">
                 <div class="col-12">
-                  <select class="custom-select" formControlName="usuarioSeleccionado">
+                  <select class="custom-select" formControlName="usuarioSeleccionado" (change)="limpiarCampos()">
                     <option class="custom-select" *ngFor="let usuario of usuarios" [ngValue]="usuario.value">{{usuario.usuario}}</option>
                   </select>
                 </div>

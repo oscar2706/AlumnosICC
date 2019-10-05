@@ -1,62 +1,58 @@
 <div class="card text-center my-5">
-    <div class="card-header">
-      <img src="../../../assets/facultad.png" class="card-img-top" alt="" width="auto" height="auto">
-    </div>
-    <div class="card-body my-4">
-      
-      <div class="card-text">
-        <div class="row my-4">
-          <div class="col-5 h6">
-           Crear Proyección
+  <div class="card-header">
+    <img src="../../../assets/facultad.png" class="card-img-top" alt="" width="auto" height="auto">
+  </div>
+  <div class="card-body my-4">
+      <div class="form">
+    <div class="card-text">
+      <div class="row my-4">
+        <div class="col-5 h5">
+          Crear Proyección
+        </div>
+        <div class="col-7 h6">
+            <input type="text" class="form-control" id="validationTooltip02" placeholder="Nombre del Periodo" required>
+        </div>
+      </div>
+
+      <div class="row my-4">
+          <div class="col-5 h5">
+          Fecha de inicio:
           </div>
-              <div class="form-row">
-                <div class="col-md-10 mb-3">
-                <input type="text" class="form-control" id="validationTooltip02" placeholder="Nombre del Periodo" required>
+        <div class="col-7 h5">
+            <div class="form-group">
+                <div class="input-group">
+                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
                 </div>
               </div>
-              <div class="col-8 h6">
-                  Fecha de inicio:
-                  <form class="form-inline">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input class="form-control" placeholder="yyyy-mm-dd"
-                                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                    
-                   
-                    
-                 </div>
-              
-              <div class="col-8 h6">
-                  Fecha de fin:
-                
-                  <form class="form-inline">
-                      <div class="form-group">
-                        <div class="input-group">
-                          <input class="form-control" placeholder="yyyy-mm-dd"
-                                 name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
-                            
-                          </div>
-                          
-                            
-                          
-                        </div>
-                          
-                      </div>
-                      
-                    </form>
-                    
-                    
+        </div>
+      </div>
+
+      <div class="row my-4">
+          <div class="col-5 h5">
+          Fecha de Fin:
+          </div>
+          <div class="col-7 h5">
+          <div class="form-group">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                  #d="ngbDatepicker">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                 </div>
-                <button type="button" class="btn btn-outline-info text-center mx-auto">
-                    Crear
-                  </button> 
+              </div>
+            </div>
+          </div>
+      </div>
+
+        <button type="button" class="btn btn-outline-info text-center mx-auto">
+          Crear
+        </button>
+      </div>
     </div>
-  </div>
+
+    
+    

@@ -9,8 +9,38 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-modal-login',
   templateUrl: './modal-login.component.html'
 })
-export class LoginModalComponent {
-  constructor(public activeModal: NgbActiveModal) {}
+export class LoginModalComponent implements OnInit{
+  private _success = new Subject<string>();
+  successMessage: string;
+  numeroIdentificacion: string;
+
+  passwordForm = new FormGroup({
+    password: new FormControl(''),
+    confirmation: new FormControl('')
+  });
+
+  constructor(private router: Router, public activeModal: NgbActiveModal) {}
+
+  ngOnInit() {
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+  }
+
+  changePassword() {
+    if(this.passwordForm.value.password == this.numeroIdentificacion) {
+      this._success.next("La nueva contraseña no puede ser igual a la contraseña por defecto");
+    }
+    else if(this.passwordForm.value.password == "" || this.passwordForm.value.confirmation == "") {
+      this._success.next("Campos vacios");
+    }
+    else if(this.passwordForm.value.password == this.passwordForm.value.confirmation) {
+      this._success.next("Contraseñas iguales");
+      this.activeModal.close();
+      this.router.navigate(['alumno/materias']);
+    }
+  }
 }
 
 interface Alumno {
@@ -83,7 +113,8 @@ export class LoginComponent implements OnInit {
   }
 
   open() {
-    this.modalService.open(LoginModalComponent);
+    const modal = this.modalService.open(LoginModalComponent);
+    modal.componentInstance.numeroIdentificacion = this.loginForm.value.user;
   }  
 
   limpiarCampos() {

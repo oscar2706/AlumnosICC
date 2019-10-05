@@ -20,10 +20,10 @@ export class LoginComponent implements OnInit {
 
   alumnoPrueba: Alumno = { matricula: "201739995", password: "football26398" };
   usuarios = [
-    {usuario: 'Alumno', value: 1},
-    {usuario: 'Tutor', value: 2},
-    {usuario: 'Coordinador', value: 3},
-    {usuario: 'Administrador', value: 4}];
+    { usuario: 'Alumno', value: 1 },
+    { usuario: 'Tutor', value: 2 },
+    { usuario: 'Coordinador', value: 3 },
+    { usuario: 'Administrador', value: 4 }];
   loginForm = new FormGroup({
     usuarioSeleccionado: new FormControl(this.usuarios),
     user: new FormControl(''),
@@ -54,10 +54,20 @@ export class LoginComponent implements OnInit {
         this._success.next("Usuario o Contraseña Incorrecta");
         break;
       case 3:
-          this._success.next("Usuario o Contraseña Incorrecta");
+        if (this.loginForm.value.password == "123") {
+          console.log("Acceso autorizado");
+        }
+        else {
+          this._success.next("Contraseña Incorrecta");
+        }
         break;
       case 4:
-          this._success.next("Usuario o Contraseña Incorrecta");
+        if (this.loginForm.value.password == "admin") {
+          console.log("Acceso autorizado");
+        }
+        else {
+          this._success.next("Contraseña Incorrecta");
+        }
         break;
     }
   }

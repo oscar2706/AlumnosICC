@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -14,7 +14,7 @@ interface Alumno {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, DoCheck {
   private _success = new Subject<string>();
   successMessage: string;
 
@@ -38,6 +38,13 @@ export class LoginComponent implements OnInit {
       debounceTime(5000)
     ).subscribe(() => this.successMessage = null);
     this.loginForm.controls.usuarioSeleccionado.setValue(1);
+  }
+
+  ngDoCheck() {
+    this.loginForm.controls['usuarioSeleccionado'].valueChanges.subscribe(() => {
+      this.loginForm.controls['user'].setValue('');
+      this.loginForm.controls['password'].setValue('');
+    });
   }
 
   login() {

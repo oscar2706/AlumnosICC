@@ -13,6 +13,7 @@ export class LoginModalComponent implements OnInit{
   private _success = new Subject<string>();
   successMessage: string;
   numeroIdentificacion: string;
+  passwordModified = 0;
 
   passwordForm = new FormGroup({
     password: new FormControl(''),
@@ -30,15 +31,24 @@ export class LoginModalComponent implements OnInit{
 
   changePassword() {
     if(this.passwordForm.value.password == this.numeroIdentificacion) {
+      this.passwordModified = 0;
       this._success.next("La nueva contraseña no puede ser igual a la contraseña por defecto");
     }
     else if(this.passwordForm.value.password == "" || this.passwordForm.value.confirmation == "") {
+      this.passwordModified = 0;
       this._success.next("Campos vacios");
     }
     else if(this.passwordForm.value.password == this.passwordForm.value.confirmation) {
-      this._success.next("Contraseñas iguales");
-      this.activeModal.close();
-      this.router.navigate(['alumno/materias']);
+      this.passwordModified = 1;
+      this._success.next("Contraseña actualizada");
+      setTimeout(() => {
+        this.activeModal.close();
+        this.router.navigate(['alumno/materias']);
+      }, 1500);
+    }
+    else {
+      this.passwordModified = 0;
+      this._success.next("Datos ingresados no coinciden");
     }
   }
 }

@@ -1,7 +1,7 @@
 <form [formGroup]="passwordForm" (ngSubmit)="changePassword()">
     <div class="modal-header">
         <h4 class="modal-title">Cambio de Contraseña</h4>
-        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('')">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('')" *ngIf="passwordModified === 0">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
@@ -25,8 +25,9 @@
         </div>
     </div>
     <div class="modal-footer">
-        <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
-        <button type="submit" class="btn btn-outline-primary" data-dismiss="modal">Aceptar</button>
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close('')">Cancelar</button>
+        <ngb-alert *ngIf="successMessage && passwordModified === 0" type="danger" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+        <ngb-alert *ngIf="successMessage && passwordModified === 1" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+        <button type="submit" class="btn btn-outline-primary" data-dismiss="modal" *ngIf="passwordModified === 0">Aceptar</button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" (click)="activeModal.close('')" *ngIf="passwordModified === 0">Cancelar</button>
     </div>
 </form>

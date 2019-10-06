@@ -8,14 +8,14 @@ import { CoordinadorModule } from './coordinador/coordinador.module';
 import { TutorModule } from './tutor/tutor.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import {AgGridModule} from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
-    AppComponent,
- 
+    AppComponent, 
   ],
   imports: [
+    AgGridModule.withComponents(null),
     BrowserModule,
     AppRoutingModule,
     AdministradorModule,

@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let country of countries">
+          <tr *ngFor="let country of countries" (click)="seleccionarMateria(country.id)" [ngClass]="{'bg-info': materiaSeleccionada(country.id)}">
             <th scope="row">{{ country.id }}</th>
             <td>
               <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2"

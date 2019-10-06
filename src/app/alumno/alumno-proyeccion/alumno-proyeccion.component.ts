@@ -95,19 +95,61 @@ const COUNTRIES: Country[] = [
   styleUrls: ['./alumno-proyeccion.component.css']
 })
 export class AlumnoProyeccionComponent implements OnInit {
+  page:number = 1;
+  pageSize:number = 10;
+  collectionSize:number = COUNTRIES.length;
+  materiaRecorrido:number;
+  materiaNueva:number;
+  materiasProyeccion:number[] = [];
 
   constructor() { }
 
   ngOnInit() {
+    for(var i=0; i<7; i++) {
+      this.materiasProyeccion[i] = 0;
+    }
   }
-
-  page = 1;
-  pageSize = 10;
-  collectionSize = COUNTRIES.length;
 
   get countries(): Country[] {
     return COUNTRIES
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+
+  seleccionarMateria(id) {
+    this.materiaRecorrido=0;
+    this.materiaNueva = 0;
+
+    for(var i=0; i<7; i++) {
+      if(this.materiasProyeccion[i] == id) {
+        this.materiasProyeccion[i] = 0;
+        break;
+      }
+      else {
+        this.materiaRecorrido++;
+      }
+    }
+
+    if(this.materiaRecorrido == 7) {
+      this.materiaNueva = 1;
+    }
+
+    if(this.materiaNueva == 1) {
+      for(var i=0; i<7; i++) {
+        if(this.materiasProyeccion[i] == 0) {
+          this.materiasProyeccion[i] = id;
+          break;
+        }
+      }
+    }
+  }
+
+  materiaSeleccionada(id) {
+    for(var i=0; i<7; i++) {
+      if(this.materiasProyeccion[i] == id) {
+        return true;
+      }
+    }
+    return false;
   }
 }

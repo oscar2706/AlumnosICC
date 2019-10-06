@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
@@ -102,6 +102,7 @@ export class AlumnoProyeccionComponent implements OnInit {
   collectionSize:number = COUNTRIES.length;
   materiaRecorrido:number;
   materiaNueva:number;
+  @Output() materiasSeleccionadas = new EventEmitter<number[]>();
   materiasProyeccion:number[] = [];
   private _success = new Subject<string>();
   successMessage: string;
@@ -117,6 +118,8 @@ export class AlumnoProyeccionComponent implements OnInit {
     for(var i=0; i<7; i++) {
       this.materiasProyeccion[i] = 0;
     }
+    
+    this.materiasSeleccionadas.emit(this.materiasProyeccion);
   }
 
   get countries(): Country[] {
@@ -159,6 +162,8 @@ export class AlumnoProyeccionComponent implements OnInit {
     if(this.materiaRecorrido == 7 && this.materiaNueva) {
       this._success.next("Ya has seleccionado el número máximo de materias(7)");
     }
+
+    this.materiasSeleccionadas.emit(this.materiasProyeccion);
   }
 
   materiaSeleccionada(id) {

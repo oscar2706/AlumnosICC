@@ -7,6 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AlumnoVentanaProyeccionComponent implements OnInit {
 
+  public materiasSeleccionadas: number[];
+
+  materiasProyeccion(materias: number[]) {
+    this.materiasSeleccionadas = materias;
+  }
+
   constructor() { }
 
   ngOnInit() {

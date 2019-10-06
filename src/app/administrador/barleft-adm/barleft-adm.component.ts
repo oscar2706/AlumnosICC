@@ -6,7 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./barleft-adm.component.css']
 })
 export class BarleftAdmComponent implements OnInit {
-
+  
+  
+  opcion=1;
   constructor() { }
 
   ngOnInit() {

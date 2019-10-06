@@ -1,85 +1,137 @@
 <div class="card text-center my-5">
-  <div class="card-header">
-    <img src="../../../assets/facultad.png" class="card-img-top" alt="" width="auto" height="auto">
-  </div>
-  <div class="card-body my-4">
-      <div class="form">
-    <div class="card-text">
-      <div class="row my-4">
-          <div class="col-sm-12 col-lg-5 col-md-5 h5">
-             Periodo
+    <div class="card-header">
+      <img src="../../../assets/facultad.png" class="card-img-top" alt="" width="auto" height="auto">
+    </div>
+    
+    <div class="card-body my-4">
+        <div class="row my-4" h5>
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+                <button type="button" class="btn btn-outline-info text-center mx-auto" (click)="opcion=1">
+                    Nva. Proyección
+                  </button>
             </div>
-            <div class="col-sm-12 col-lg-7 col-md-7 h5">
-            <div class="dropdown">
-                <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Elige un periodo
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" >Otoño</a>
-                  <a class="dropdown-item" >Primavera</a>
-                  <a class="dropdown-item" >Verano</a>
-                </div>
+            <div class="col-sm-12 col-lg-7 col-md-5 h5">
+                <button type="button" class="btn btn-outline-info text-center mx-auto" (click)="opcion=2">
+                    Nvo. Periodo de Marcado
+                  </button>
               </div>
-            </div>
-      </div>
-
-      <div class="row my-4">
-          <div class="col-sm-12 col-lg-5 col-md-5 h5">
-              Año
-            </div>
-            <div class="col-sm-12 col-lg-7 col-md-7 h5">
-            <div class="dropdown">
-                <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Elige un año
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" >2020</a>
-                </div>
+        </div>
+  
+      <div *ngIf="opcion==1">
+        <div class="form">
+      <div class="card-text">
+        <div class="row my-4">
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+               Periodo
               </div>
-            </div>
-      </div>
-
-      
-
-      <div class="row my-4">
-          <div class="col-sm-12 col-lg-5 col-md-5 h5">
-          Fecha de inicio:
-          </div>
-        <div class="col-sm-12 col-lg-7 col-md-6 h5">
-            <div class="form-group">
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+              <div class="col-sm-12 col-lg-7 col-md-7 h5">
+              <div class="dropdown">
+                  <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Elige un periodo
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" >Otoño</a>
+                    <a class="dropdown-item" >Primavera</a>
+                    <a class="dropdown-item" >Verano</a>
                   </div>
                 </div>
               </div>
         </div>
-      </div>
-
-      <div class="row my-4">
-          <div class="col-sm-12 col-lg-5 col-md-5 h5">
-          Fecha de Fin:
-          </div>
-        <div class="col-sm-12 col-lg-7 col-md-6 h5">
-            <div class="form-group">
-                <div class="input-group">
-                  <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                    #d="ngbDatepicker">
-                  <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+        
+    
+        <div class="row my-4">
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+            Fecha de inicio:
+            </div>
+          <div class="col-sm-12 col-lg-7 col-md-6 h5">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                      #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
                   </div>
                 </div>
-              </div>
+          </div>
         </div>
-      </div>
-
-        <button type="button" class="btn btn-outline-info text-center mx-auto">
-          Crear
-        </button>
+    
+        <div class="row my-4">
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+            Fecha de Fin:
+            </div>
+          <div class="col-sm-12 col-lg-7 col-md-6 h5">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                      #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+        <div class="row my-4">
+          <button type="button" class="btn btn-outline-info text-center mx-auto">
+            Crear 
+          </button>
+    
+        </div>
       </div>
     </div>
-
+    </div>
+  
+    <div *ngIf="opcion==2">
+        <div class="form">
+      <div class="card-text">
     
+        <div class="row my-4">
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+            Fecha de inicio:
+            </div>
+          <div class="col-sm-12 col-lg-7 col-md-6 h5">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                      #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
     
+        <div class="row my-4">
+            <div class="col-sm-12 col-lg-5 col-md-5 h5">
+            Fecha de Fin:
+            </div>
+          <div class="col-sm-12 col-lg-7 col-md-6 h5">
+              <div class="form-group">
+                  <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                      #d="ngbDatepicker">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                    </div>
+                  </div>
+                </div>
+          </div>
+        </div>
+        <div class="row my-4">
+            <button type="button" class="btn btn-outline-info text-center mx-auto">
+                Crear
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+          
+    
+  
+      
+      
+  

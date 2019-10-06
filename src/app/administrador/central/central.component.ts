@@ -65,7 +65,7 @@ const COUNTRIES: Country[] = [
   styleUrls: ['./central.component.css']
 })
 export class CentralComponent implements OnInit {
-  
+  PaisSeleccionado:string;
   constructor() { }
 
   ngOnInit() {}
@@ -78,5 +78,9 @@ export class CentralComponent implements OnInit {
       .map((country, i) => ({id: i + 1, ...country}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
-
+  onRowClicked(row){
+    
+    this.PaisSeleccionado=row;
+    console.log(this.PaisSeleccionado);
+  }
 }

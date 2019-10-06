@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { AlumnoService } from "../../services/alumno.service";
+import { TutorService } from "../../services/tutor.service";
 import { CoordinadorService } from "../../services/coordinador.service";
 import { AdministradorService } from "../../services/administrador.service";
-import { Alumno as AlumnoInterface } from "../../models/alumno";
 import { Observable } from "rxjs";
 import { DatePipe } from "@angular/common";
+
 interface Alumno {
   id?: number;
   name: string;
@@ -90,6 +91,7 @@ export class VistaPrincipalComponent implements OnInit {
     private alumnoService: AlumnoService,
     private coordinadorService: CoordinadorService,
     private administradorService: AdministradorService,
+    private tutorService: TutorService,
     public datePipe: DatePipe
   ) {}
 
@@ -100,11 +102,27 @@ export class VistaPrincipalComponent implements OnInit {
       console.log(data);
     });
 
+    this.alumnoService.getMaterias().subscribe(data => {
+      console.log(data);
+    });
+
     this.alumnoService.getMateriasCursadas("201700181").subscribe(data => {
       console.log(data);
     });
 
-    this.alumnoService.getAlumnosFromSeccion(1).subscribe(data => {
+    this.alumnoService.createMateriaCursada('201700390', 'CCOS 007').subscribe(data => {
+      console.log(data);
+    });
+
+    this.alumnoService.deleteMateriaCursada('201700390', 'CCOS 007').subscribe(data => {
+      console.log(data);
+    });
+
+    this.alumnoService.updateAlumnoPassword('201700390', 'pene').subscribe (data => {
+      console.log(data);
+    });
+
+    this.tutorService.getTrabajador("100003466").subscribe(data => {
       console.log(data);
     });
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AlumnoService } from '../../services/alumno.service';
+import { Alumno as AlumnoInterface} from '../../models/alumno'
+import { Observable } from 'rxjs';
 interface Alumno {
   id?: number;
   name: string;
@@ -80,7 +82,31 @@ const ALUMNOS: Alumno[] = [
   templateUrl: './vista-principal.component.html',
   styleUrls: ['./vista-principal.component.css']
 })
-export class VistaPrincipalComponent {
+export class VistaPrincipalComponent implements OnInit{
+  constructor (private alumnoService: AlumnoService) {
+  }
+
+  alumnos: Observable<any>;
+
+  ngOnInit () {
+    this.alumnoService.getAlumno('201700181').subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+
+    this.alumnoService.getMateriasCursadas('201700181').subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+
+    this.alumnoService.getAlumnosFromSeccion(1).subscribe(
+      data => {
+        console.log(data);
+      }
+    );
+  }
 
   page = 1;
   pageSize = 6;

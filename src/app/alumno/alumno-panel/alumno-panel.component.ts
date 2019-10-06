@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class AlumnoPanelComponent implements OnInit {
 
   @Input() materiasSeleccionadas: number[];
+  @Input() ventanaAbierta:number;
 
   constructor(private router: Router) { }
 
@@ -16,7 +17,9 @@ export class AlumnoPanelComponent implements OnInit {
   }
 
   prueba() {
-    console.log(this.materiasSeleccionadas);
-    this.router.navigate(['alumno/materias']);
+    if(this.ventanaAbierta == 3) {
+      console.log(this.materiasSeleccionadas);
+      this.router.navigate(['alumno/materias']);
+    }
   }
 }

@@ -11,6 +11,10 @@ export class AlumnoService {
   API = 'http://127.0.0.1:8000';
   constructor (private http: HttpClient) { }
 
+  getAlumnos () {
+    return this.http.get<Alumno[]>(this.API + '/alumnos');
+  }
+
   getAlumno (matricula) {
     return this.http.get<Alumno>(this.API + '/alumnos/' + matricula);
   }

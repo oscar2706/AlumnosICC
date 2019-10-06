@@ -2,7 +2,8 @@
   <div class="col-12">
     <div class="row">
       <div class="h3 text-center mx-auto">
-        Proyección de cursos
+        <p>Proyección de cursos</p>
+        <ngb-alert *ngIf="successMessage" type="danger" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
       </div>
     </div>
     <div class="row my-4">

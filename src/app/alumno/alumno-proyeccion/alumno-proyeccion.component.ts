@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 interface Country {
   id?: number;
@@ -101,10 +103,17 @@ export class AlumnoProyeccionComponent implements OnInit {
   materiaRecorrido:number;
   materiaNueva:number;
   materiasProyeccion:number[] = [];
+  private _success = new Subject<string>();
+  successMessage: string;
 
   constructor() { }
 
   ngOnInit() {
+    this._success.subscribe((message) => this.successMessage = message);
+    this._success.pipe(
+      debounceTime(5000)
+    ).subscribe(() => this.successMessage = null);
+
     for(var i=0; i<7; i++) {
       this.materiasProyeccion[i] = 0;
     }
@@ -134,13 +143,21 @@ export class AlumnoProyeccionComponent implements OnInit {
       this.materiaNueva = 1;
     }
 
+    this.materiaRecorrido = 0;
+
     if(this.materiaNueva == 1) {
       for(var i=0; i<7; i++) {
         if(this.materiasProyeccion[i] == 0) {
           this.materiasProyeccion[i] = id;
           break;
+        } else {
+          this.materiaRecorrido ++;
         }
       }
+    }
+
+    if(this.materiaRecorrido == 7 && this.materiaNueva) {
+      this._success.next("Ya has seleccionado el número máximo de materias(7)");
     }
   }
 

@@ -1,0 +1,47 @@
+
+<div class="container-fluid my-5">
+    <div class="row">
+      <div class="col-lg-10 offset-md-1">
+        <div class="row mx-5">
+          <div class="h3 text-center mx-auto">
+            Reportes
+          </div>
+        </div>
+        <div class="row my-3">
+            <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+              <option [ngValue]="4">4 reportes por página</option>
+              <option [ngValue]="6">6 reportes por página</option>
+              <option [ngValue]="10">10 reportes por página</option>
+            </select>
+          </div>
+        <div class="row my-5">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Periodo</th>
+                <th scope="col">Aprobados</th> 
+                <th scope="col">Reprobados</th>
+                <th scope="col">Materias Ofertadas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let country of countries">
+                <th scope="row">{{ country.id }}</th>
+                <td>
+                 
+                  {{ country.name }}
+                </td>
+                <td>{{ country.area | number}}</td>
+                <td>{{ country.materia | number}}</td>
+                <td>{{ country.materia2 | number}}</td>
+              </tr>
+            </tbody>
+          </table>
+          
+        </div>
+    
+      </div>
+  
+    </div>
+    </div>

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgxPaginationModule } from "ngx-pagination";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { BarLeftComponent } from "./bar-left/bar-left.component";
 import { CentralComponent, NgbdModalContent } from "./central/central.component";
@@ -21,7 +22,7 @@ import { BarleftAdmComponent } from "./barleft-adm/barleft-adm.component";
     BarleftAdmComponent,
     NgbdModalContent
   ],
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxPaginationModule],
   exports: [ResetPasswdComponent, ProyeccionesComponent],
   entryComponents: [NgbdModalContent]
 })

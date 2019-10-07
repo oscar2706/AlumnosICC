@@ -9,26 +9,13 @@ import { Proyeccion } from '../../models/proyeccion';
 })
 export class Central2Component implements OnInit {
   proyecciones: Proyeccion[];
-  page: number;
-  pageSize: number;
-  collectionSize: number;
+  pageSize: number = 10;
 
   constructor(private administrador: AdministradorService) { }
 
   ngOnInit() {
     this.administrador.getProyecciones().subscribe(data => {
       this.proyecciones = data;
-      this.page = 1;
-      this.pageSize = 4;
-      this.collectionSize = this.proyecciones.length;
-      this.getProyecciones();
     });
   }
-
-  getProyecciones(): Proyeccion[] {
-    return this.proyecciones
-      .map((country, i) => ({id: i + 1, ...country}))
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-  }
-
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AdministradorService } from '../../services/administrador.service';
+import { Alumno } from '../../models/alumno';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -24,114 +26,39 @@ export class NgbdModalContent {
   constructor(public activeModal: NgbActiveModal) {}
 }
 
-
-interface Country {
-  id?:number;
-  name: string;
-  area: number;
-  seccion:string;
-
-}
-
-const COUNTRIES: Country[] = [
-  {
-    name: 'Sarmiento Barrios Estefania',
-    area: 17075200,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Montiel Estrada Mayra vanessa ',
-    area: 640679,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Amador Barrientos Luis Leonardo',
-    area: 357114,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Rubio Quintero Rebeca',
-    area: 92090,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Patricio Hernández Oscar',
-    area: 9976140,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Lozada Mendoza Dylan Salomón',
-    area: 331212,
-    seccion: '02-2018'
-  },
-  {
-    name: 'Hernández Cuacua Rosa Gabriela',
-    area: 8515767,
-    seccion: '03-2018'
-  },
-  {
-    name: 'Sandra Danae Rosas Ortega',
-    area: 1964375,
-    seccion: '01-2019'
-  },
-  {
-    name: 'Citlali Castillo Morales',
-    area: 9629091,
-    seccion: '02-2019'
-  },
-  {
-    name: 'José Luis Morales González',
-    area: 3287263,
-    seccion: '01-2017'
-  },
-  {
-    name: 'Victoria Rubio Quintero',
-    area: 1910931,
-    seccion: '02-2017'
-  },
-  {
-    name: 'Ana Paula Sarmiento Barrios',
-    area: 26,
-    seccion: '03-2017'
-  },
-  {
-    name: 'Lizbeth Gaspar Antonio',
-    area: 9596960,
-    seccion: '01-2018'
-  }
-];
 @Component({
   selector: 'app-central',
   templateUrl: './central.component.html',
   styleUrls: ['./central.component.css']
 })
 export class CentralComponent implements OnInit {
-  PaisSeleccionado:string;
-  defseccion:string="";
-  constructor(private modalService: NgbModal) { }
+  alumnos: Alumno[];
+  pageSize: number = 30;
+  alumnoSeleccionado:string;
+  defseccion:number=0;
 
-  ngOnInit() {}
-  page = 1;
-  pageSize = 4;
-  collectionSize = COUNTRIES.length;
+  constructor(private modalService: NgbModal, private administradorService: AdministradorService) { }
 
-
-  get countries(): Country[] {
-    
-    return COUNTRIES
-      .map((country, i) => ({id: i +1, ... country}))
-      .filter(pais=>this.defseccion == "" || pais.seccion==this.defseccion)
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
-      
-      
+  ngOnInit() {
+    this.administradorService.getAlumnos().subscribe(data => {
+      this.alumnos = data;
+    });
   }
-  onRowClicked(row){
-    
-    this.PaisSeleccionado=row;
-    console.log(this.PaisSeleccionado);
+
+  seleccionarAlumno(matricula) {
+    if(this.alumnoSeleccionado == matricula) {
+      this.alumnoSeleccionado = "";
+    }
+    else {
+      this.alumnoSeleccionado = matricula;
+    }
   }
+
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
-    
+  }
+
+  prueba() {
+    console.log("Prueba");
   }
 }

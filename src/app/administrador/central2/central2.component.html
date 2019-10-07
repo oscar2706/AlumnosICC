@@ -6,7 +6,7 @@
           Reportes
         </div>
       </div>
-      <div class="row my-3">
+      <div class="row my-3 justify-content-center">
         <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
           <option [ngValue]="4">4 reportes por página</option>
           <option [ngValue]="6">6 reportes por página</option>
@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let proyeccion of proyecciones">
+            <tr *ngFor="let proyeccion of proyecciones | paginate: {itemsPerPage: pageSize, currentPage: p}">
               <th scope="row">{{ proyeccion.id }}</th>
               <td>{{ proyeccion.fecha_inicio | date:'dd/MM/yyyy' }}</td>
               <td>{{ proyeccion.fecha_fin | date:'dd/MM/yyyy' }}</td>
@@ -32,8 +32,8 @@
         </table>
       </div>
       <div class="row">
-        <div class="d-flex justify-content-between p-1 ">
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+        <div class="pagina">
+          <pagination-controls [id]="" (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
     </div>

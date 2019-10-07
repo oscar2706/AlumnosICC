@@ -11,6 +11,10 @@ export class AdministradorService {
   API = 'http://127.0.0.1:8000';
   constructor (private http: HttpClient) { }
 
+  getAlumnos() {
+    return this.http.get<Alumno []>(this.API + '/alumnos');
+  }
+
   getProyecciones() {
     return this.http.get<Proyeccion []>(this.API + '/proyecciones');
   }

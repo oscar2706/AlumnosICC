@@ -9,12 +9,15 @@ import { CoordinadorModule } from './coordinador/coordinador.module';
 import { TutorModule } from './tutor/tutor.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent, LoginModalComponent } from './login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     AppComponent,
- 
+    LoginComponent, 
+    LoginModalComponent
   ],
   imports: [
     BrowserModule,
@@ -24,9 +27,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CoordinadorModule,
     TutorModule,
     HttpClientModule,
-    NgbModule.forRoot()
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule.forRoot(), 
+    NgbModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginModalComponent]
 })
 export class AppModule { }

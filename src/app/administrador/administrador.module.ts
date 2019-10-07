@@ -9,19 +9,12 @@ import { ResetPasswdComponent } from './reset-passwd/reset-passwd.component';
 import { ProyeccionesComponent } from './proyecciones/proyecciones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BarleftAdmComponent } from './barleft-adm/barleft-adm.component';
-import { RouterModule, Route } from '@angular/router';
-const routes: Route[]= 
-[
-  {path:'', component:ResetPasswdComponent},
-  {path:'restaurarpasswd', component:ResetPasswdComponent},
-  {path:'crearproy', component:ProyeccionesComponent}
-];
 
 @NgModule({
   declarations: [NavbarComponent, BarLeftComponent, CentralComponent,Central2Component,ResetPasswdComponent,ProyeccionesComponent, BarleftAdmComponent,NgbdModalContent],
   imports: 
   [
-    CommonModule, NgbModule,FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes)
+    CommonModule, NgbModule,FormsModule, ReactiveFormsModule
   ],
   exports:[ResetPasswdComponent,ProyeccionesComponent],
   entryComponents: [NgbdModalContent]

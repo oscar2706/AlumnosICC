@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { BarLeftComponent } from './bar-left/bar-left.component';
-import { CentralComponent } from './central/central.component';
+import { CentralComponent,NgbdModalContent } from './central/central.component';
 import { Central2Component } from './central2/central2.component';
 import { ResetPasswdComponent } from './reset-passwd/reset-passwd.component';
 import { ProyeccionesComponent } from './proyecciones/proyecciones.component';
@@ -18,11 +18,12 @@ const routes: Route[]=
 ];
 
 @NgModule({
-  declarations: [NavbarComponent, BarLeftComponent, CentralComponent,Central2Component,ResetPasswdComponent,ProyeccionesComponent, BarleftAdmComponent],
+  declarations: [NavbarComponent, BarLeftComponent, CentralComponent,Central2Component,ResetPasswdComponent,ProyeccionesComponent, BarleftAdmComponent,NgbdModalContent],
   imports: 
   [
     CommonModule, NgbModule,FormsModule, ReactiveFormsModule, RouterModule.forRoot(routes)
   ],
-  exports:[ResetPasswdComponent,ProyeccionesComponent]
+  exports:[ResetPasswdComponent,ProyeccionesComponent],
+  entryComponents: [NgbdModalContent]
 })
 export class AdministradorModule { }

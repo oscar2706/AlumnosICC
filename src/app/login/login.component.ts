@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
   private _success = new Subject<string>();
   successMessage: string;
 
-  alumnoPrueba: Alumno = { matricula: "201739995", password: "football26398" };
+  alumnoPrueba: Alumno = { matricula: "201739995", password: "123456" };
   usuarios = [
     { usuario: 'Alumno', value: 1 },
     { usuario: 'Tutor', value: 2 },

@@ -7,16 +7,16 @@
     </div>
     <div class="col-lg-8">
         <div class="row mx-1 justify-content-center mt-5">
-                    <button class="btn btn-primary btn-lg my-2 mx-1" (click)="componente=1">Asignar</button>
-                    <button class="btn btn-primary btn-lg my-2 mx-1" (click)="componente=2">Visualizar</button>   
+            <button class="btn btn-primary btn-lg my-2 mx-1" (click)="componente=1">Asignar</button>
+            <button class="btn btn-primary btn-lg my-2 mx-1" (click)="componente=2">Visualizar</button>
         </div>
         <div class="row">
-                <div *ngIf="componente==1"class="align-self-center col-sm-12 col-md-12 col-lg-12 ">
-            <app-busqueda></app-busqueda>
-             </div>
-             <div *ngIf="componente==2"class="align-self-center col-sm-12 col-md-12 col-lg-12 ">
-                    <app-visualizar></app-visualizar>
-                     </div>
+            <div *ngIf="componente==1" class="align-self-center col-sm-12 col-md-12 col-lg-12 ">
+                <app-busqueda></app-busqueda>
+            </div>
+            <div *ngIf="componente==2" class="align-self-center col-sm-12 col-md-12 col-lg-12 ">
+                <app-visualizar></app-visualizar>
+            </div>
         </div>
     </div>
 </div>

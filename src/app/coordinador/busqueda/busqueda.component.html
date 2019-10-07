@@ -4,7 +4,7 @@
       <form>
         <label>Buscar Profesor</label>
         <div class="form-group form-inline">
-           Nombre:
+          Nombre:
           <input class="form-control ml-2" type="text" [formControl]="filter" />
         </div>
       </form>
@@ -20,10 +20,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let country of countries$ | async; index as i" (click)="onRowClicked(country.name)" [ngClass]="{'bg-info': country.name==PaisSeleccionado}" >
-            <th scope="row" >{{ i + 1 }}</th>
+          <tr *ngFor="let tutor of tutores$ | async" (click)="seleccionarTutor(tutor.id)"
+            [ngClass]="{'bg-info': tutor.id===tutorSeleccionado}">
+            <th scope="row">{{ tutor.id }}</th>
             <td>
-              <ngb-highlight [result]="country.name" [term]="filter.value" ></ngb-highlight>
+              <ngb-highlight [result]="tutor.nombre" [term]="filter.value"></ngb-highlight>
             </td>
           </tr>
         </tbody>
@@ -33,40 +34,21 @@
       <table class="table table-hover">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Grupos</th>
-            <th scope="col">Generacion</th>
+            <th scope="col">ID</th>
+            <th scope="col">Año</th>
           </tr>
         </thead>
         <tbody>
-          <!--<tr *ngFor="let country of countries$ | async; index as i">
-                <td>
-                  <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight>
-                </td>
-              </tr>!-->
-          <tr >
-
-            <td>ICC031TOP</td>
-            <td>2016</td>
+          <tr *ngFor="let seccion of secciones" (click)="seleccionarSeccion(seccion.id)" [ngClass]="{'bg-info': seccion.id===seccionSeleccionada}">
+            <th scope="row">{{seccion.id}}</th>
+            <td>{{seccion.agno}}</td>
           </tr>
-          <tr>
-            <td>ICC031TOP</td>
-            <td>2016</td>
-          </tr>
-          <tr>
-            <td>ICC031TOP</td>
-            <td>2016</td>
-          </tr>
-          <tr>
-            <td>ICC031TOP</td>
-            <td>2016</td>
-          </tr>
-
         </tbody>
       </table>
     </div>
   </div>
-  <div class="row justify-content-center" *ngIf="activo==1 && activo2==1">
-      <button class="btn btn-primary btn-lg my-3 mx-1">Guardar Asignación</button>
-    </div>
+  <div class="row justify-content-center" *ngIf="seleccionTutor && seleccionSeccion">
+    <button class="btn btn-primary btn-lg my-3 mx-1">Guardar Asignación</button>
+  </div>
 
 </div>

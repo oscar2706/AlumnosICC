@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -42,22 +43,22 @@ const COUNTRIES: Country[] = [
   {
     name: 'Montiel Estrada Mayra vanessa ',
     area: 640679,
-    seccion: '02-2017'
+    seccion: '01-2017'
   },
   {
     name: 'Amador Barrientos Luis Leonardo',
     area: 357114,
-    seccion: '03-2017'
+    seccion: '01-2017'
   },
   {
     name: 'Rubio Quintero Rebeca',
     area: 92090,
-    seccion: '01-2018'
+    seccion: '01-2017'
   },
   {
     name: 'Patricio Hernández Oscar',
     area: 9976140,
-    seccion: '02-2018'
+    seccion: '01-2017'
   },
   {
     name: 'Lozada Mendoza Dylan Salomón',
@@ -107,19 +108,23 @@ const COUNTRIES: Country[] = [
 })
 export class CentralComponent implements OnInit {
   PaisSeleccionado:string;
+  defseccion:string="";
   constructor(private modalService: NgbModal) { }
 
   ngOnInit() {}
   page = 1;
   pageSize = 4;
-  defseccion=0;
   collectionSize = COUNTRIES.length;
 
 
   get countries(): Country[] {
+    
     return COUNTRIES
-      .map((country, i) => ({id: i + 1, ...country}))
+      .map((country, i) => ({id: i +1, ... country}))
+      .filter(pais=>this.defseccion == "" || pais.seccion==this.defseccion)
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+      
+      
   }
   onRowClicked(row){
     
@@ -128,6 +133,6 @@ export class CentralComponent implements OnInit {
   }
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'Hola';
+    
   }
 }

@@ -20,6 +20,10 @@ export class AlumnoService {
     return this.http.get<Materia []>(this.API + '/materias');
   }
 
+  getMateria(clave: string) {
+    return this.http.get<Materia>(this.API + '/materias/' + clave);
+  }
+
   getMateriasCursadas (matricula) {
     return this.http.get<Materia []>(this.API + '/alumnos/' + matricula + '/materias_cursadas');
   }

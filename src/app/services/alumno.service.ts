@@ -10,6 +10,7 @@ import { MateriaCursada } from '../models/materiaCursada';
 })
 export class AlumnoService {
   API = 'http://127.0.0.1:8000';
+  matricula: string;
   constructor (private http: HttpClient) { }
 
   getAlumno (matricula) {
@@ -40,6 +41,14 @@ export class AlumnoService {
 
   updateAlumnoPassword(matricula, password) {
     return this.http.put<Alumno []>(this.API + '/alumnos/' + matricula, {'password': password});
+  }
+
+  accesoCorrecto(matricula) {
+    this.matricula = matricula;
+  }
+
+  getAcceso() {
+    return this.matricula;
   }
 
   //Todo

@@ -57,6 +57,7 @@ export class LoginModalComponent implements OnInit {
       this.passwordModified = 1;
       this._success.next("Contraseña actualizada");
       if(this.usuarioSeleccionado == 1) {
+        this.alumnoService.accesoCorrecto(this.numeroIdentificacion);
         this.alumnoService.updateAlumnoPassword(this.numeroIdentificacion, this.passwordForm.value.password).subscribe();
       } 
       else {
@@ -165,6 +166,7 @@ export class LoginComponent implements OnInit {
       if (this.loginForm.value.user == this.loginForm.value.password) {
         this.open(1);
       } else {
+        this.alumnoService.accesoCorrecto(this.loginForm.value.user);
         this.router.navigate(["/alumno/materias"]);
       }
     } else {

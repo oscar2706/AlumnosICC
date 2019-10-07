@@ -39,7 +39,6 @@ export class BusquedaComponent implements OnInit {
 
     this.coordinadorService.getSecciones().subscribe(data => {
       this.secciones = data;
-      console.log(this.secciones);
     });
   }
 

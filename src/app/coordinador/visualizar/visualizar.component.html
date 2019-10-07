@@ -1,33 +1,32 @@
 <div class="container-fluid my-5 ">
-    <div class="row justify-content-center">
-      
-        <form>
-          <label class="text-center">Buscar Profesor</label>
-          <div class="form-group form-inline">
-             Nombre:
-            <input class="form-control ml-2" type="text" [formControl]="filter" />
-          </div>
-        </form>
-     
-    </div>
-    <div class="row justify-content-center">
-      <div class="align-self-center col-sm-12 col-md-6 col-lg-6">
-        <table class="table table-hover">
-          <thead class="thead-dark">
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Tutores</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let country of countries$ | async; index as i" (click)="onRowClicked(country.name)" [ngClass]="{'bg-info': country.name==PaisSeleccionado}" >
-              <th scope="row" >{{ i + 1 }}</th>
-              <td>
-                <ngb-highlight [result]="country.name" [term]="filter.value" ></ngb-highlight>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+  <div class="row justify-content-center">
+    <form>
+      <label class="text-center">Buscar Profesor</label>
+      <div class="form-group form-inline">
+        Nombre:
+        <input class="form-control ml-2" type="text" [formControl]="filter" />
       </div>
+    </form>
+  </div>
+  <div class="row justify-content-center">
+    <div class="align-self-center col-sm-12 col-md-6 col-lg-6">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tutores</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tutor of tutores$ | async" (click)="seleccionarTutor(tutor.id, tutor.nombre)"
+            [ngClass]="{'bg-info': tutor.id===tutorSeleccionado}">
+            <th scope="row">{{ tutor.id }}</th>
+            <td>
+              <ngb-highlight [result]="tutor.nombre" [term]="filter.value"></ngb-highlight>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 </div>

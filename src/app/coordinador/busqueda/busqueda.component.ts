@@ -1,78 +1,71 @@
-//import { Component, OnInit } from '@angular/core';
-
-import { Component, OnInit, PipeTransform } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
-import { FormControl } from '@angular/forms';
-
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-
-interface Country {
-  name: string;
-  flag: string;
-}
-
-const COUNTRIES: Country[] = [
-  {
-    name: 'Abraham Sanchez',
-    flag: 'f/f3/Flag_of_Russia.svg',
-
-  },
-  {
-    name: 'Carlos Armando Rios',
-    flag: 'c/cf/Flag_of_Canada.svg',
-  
-  },
-  {
-    name: 'Josefina Guerrero Garcia',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-  
-  },
-  {
-    name: 'Bernardo Parra',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-
-  }
-];
-
-
-function search(text: string, pipe: PipeTransform): Country[] {
-  return COUNTRIES.filter(country => {
-    const term = text.toLowerCase();
-    return country.name.toLowerCase().includes(term)
-
-  });
-}
+import { Component, OnInit, PipeTransform } from "@angular/core";
+import { DecimalPipe } from "@angular/common";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
+import { CoordinadorService } from "../../services/coordinador.service";
+import { Trabajador } from "../../models/trabajador";
+import { Seccion } from "../../models/seccion";
 
 @Component({
-  selector: 'app-busqueda',
-  templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.css'],
+  selector: "app-busqueda",
+  templateUrl: "./busqueda.component.html",
+  styleUrls: ["./busqueda.component.css"],
   providers: [DecimalPipe]
 })
 export class BusquedaComponent implements OnInit {
-  countries$: Observable<Country[]>;
-  filter = new FormControl('');
-  
-  PaisSeleccionado: string;
-  activo:number = 0;
-  constructor(pipe: DecimalPipe, private modalService: NgbModal) {
-    this.countries$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe))
-    );
-  }
+  tutores: Trabajador[];
+  tutores$: Observable<Trabajador[]>;
+  secciones: Seccion[];
+  tutorSeleccionado: string;
+  seccionSeleccionada: string;
+  seleccionTutor: number = 0;
+  seleccionSeccion: number = 0;
+  filter = new FormControl("");
+
+  constructor(
+    private pipe: DecimalPipe,
+    private coordinadorService: CoordinadorService
+  ) {}
 
   ngOnInit() {
+    this.coordinadorService.getTrabajadores().subscribe(data => {
+      this.tutores = data;
+      this.tutores$ = this.filter.valueChanges.pipe(
+        startWith(""),
+        map(text => this.search(text, this.pipe))
+      );
+    });
+
+    this.coordinadorService.getSecciones().subscribe(data => {
+      this.secciones = data;
+    });
   }
 
-  onRowClicked(row){
-    
-    this.PaisSeleccionado=row;
-    console.log(this.PaisSeleccionado);
-    this.activo=1;
+  seleccionarTutor(idTutor) {
+    if (this.tutorSeleccionado != idTutor) {
+      this.tutorSeleccionado = idTutor;
+      this.seleccionTutor = 1;
+    } else {
+      this.tutorSeleccionado = "";
+      this.seleccionTutor = 0;
+    }
   }
 
+  seleccionarSeccion(idSeccion) {
+    if (this.seccionSeleccionada != idSeccion) {
+      this.seccionSeleccionada = idSeccion;
+      this.seleccionSeccion = 1;
+    } else {
+      this.seccionSeleccionada = "";
+      this.seleccionSeccion = 0;
+    }
+  }
 
+  search(text: string, pipe: PipeTransform): Trabajador[] {
+    return this.tutores.filter(tutor => {
+      const term = text.toLowerCase();
+      return tutor.nombre.toLowerCase().includes(term);
+    });
+  }
 }

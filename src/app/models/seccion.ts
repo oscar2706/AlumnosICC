@@ -1,6 +1,6 @@
 export interface Seccion {
     id: number,
-    año: number,
+    agno: number,
     punto_cinco: number,
     trabajador_id?: number
 }

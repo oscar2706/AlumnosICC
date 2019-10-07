@@ -13,7 +13,7 @@ export class TutorService {
   constructor (private http: HttpClient) { }
 
   getTrabajador(numeroTrabajador) {
-    return this.http.get<Trabajador []>(this.API + '/trabajadores/' + numeroTrabajador);
+    return this.http.get<Trabajador>(this.API + '/trabajadores/' + numeroTrabajador);
   }
 
   getSeccionesFromTrabajador (numeroTrabajador) {

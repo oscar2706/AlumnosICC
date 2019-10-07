@@ -4,13 +4,21 @@ import { LoginComponent } from './login/login.component';
 import { AlumnoVentanaMateriasComponent } from './alumno/alumno-ventana-materias/alumno-ventana-materias.component';
 import { AlumnoVentanaOptativasComponent } from './alumno/alumno-ventana-optativas/alumno-ventana-optativas.component';
 import { AlumnoVentanaProyeccionComponent } from './alumno/alumno-ventana-proyeccion/alumno-ventana-proyeccion.component';
+import { VistaPrincipalComponent } from './tutor/vista-principal/vista-principal.component';
+import { PrincipalComponent } from './coordinador/principal/principal.component';
+import { ResetPasswdComponent } from './administrador/reset-passwd/reset-passwd.component';
+import { ProyeccionesComponent } from './administrador/proyecciones/proyecciones.component'
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'alumno/materias', component: AlumnoVentanaMateriasComponent},
   {path: 'alumno/optativas', component: AlumnoVentanaOptativasComponent},
   {path: 'alumno/proyeccion', component: AlumnoVentanaProyeccionComponent},
-  { path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: 'tutor', component: VistaPrincipalComponent},
+  {path: 'coordinador', component: PrincipalComponent},
+  {path: 'administrador/restaurar', component: ResetPasswdComponent},
+  {path: 'administrador/proyeccion', component: ProyeccionesComponent},
+  {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
 
 @NgModule({

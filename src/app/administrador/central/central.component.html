@@ -22,15 +22,15 @@
           </div>
           <div class="col-sm-12 col-lg-6 col-md-5 h5">
               <select class="form-control" style="width: 100" [(ngModel)]="defseccion">
-                  <option [ngValue]="1">Elige una sección</option>
-                  <option [ngValue]="2">01-2017</option>
-                  <option [ngValue]="3">02-2017</option>
-                  <option [ngValue]="4">03-2017</option>
-                  <option [ngValue]="5">01-2018</option>
-                  <option [ngValue]="6">02-2018</option>
-                  <option [ngValue]="7">03-2018</option>
-                  <option [ngValue]="8">01-2019</option>
-                  <option [ngValue]="9">02-2019</option>
+                  <option [ngValue]="''">Elige una sección</option>
+                  <option [ngValue]="'01-2017'">01-2017</option>
+                  <option [ngValue]="'02-2017'">02-2017</option>
+                  <option [ngValue]="'03-2017'">03-2017</option>
+                  <option [ngValue]="'01-2018'">01-2018</option>
+                  <option [ngValue]="'02-2018'">02-2018</option>
+                  <option [ngValue]="'03-2018'">03-2018</option>
+                  <option [ngValue]="'01-2019'">01-2019</option>
+                  <option [ngValue]="'02-2019'">02-2019</option>
                 </select>
             </div>
         
@@ -46,7 +46,7 @@
               </tr>
             </thead>
             <tbody>
-             <tr *ngFor="let country of countries; index as i" (click)="onRowClicked(country.id)" [ngClass]="{'bg-warning': country.id==PaisSeleccionado}" >
+             <tr *ngFor="let country of countries; index as i" (click)="onRowClicked(country.id)" [ngClass]="{'bg-info': country.id==PaisSeleccionado}" >
                 <th scope="row">{{ country.id }}</th>
                 <td>{{ country.name }}</td>
                 <td>{{ country.area | number}}</td>
@@ -61,8 +61,8 @@
     </div>
       <div class="row">
         <div class="d-flex justify-content-between p-1 " >
-          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
-          </ngb-pagination>
+          <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+          
   
           
         </div>

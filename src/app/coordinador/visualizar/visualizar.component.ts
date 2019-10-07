@@ -1,12 +1,33 @@
-//import { Component, OnInit } from '@angular/core';
-
-import { Component, OnInit, PipeTransform } from '@angular/core';
+import { Component, OnInit,PipeTransform} from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+
+@Component({
+  selector: 'ngbd-modal-content',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Grupos Asignados</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>{{name}}</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  `
+})
+export class NgbdModalContent {
+ name:string;
+
+  constructor(public activeModal: NgbActiveModal) {}
+}
 
 interface Country {
   name: string;
@@ -46,32 +67,38 @@ function search(text: string, pipe: PipeTransform): Country[] {
 }
 
 @Component({
-  selector: 'app-busqueda',
-  templateUrl: './busqueda.component.html',
-  styleUrls: ['./busqueda.component.css'],
+  selector: 'app-visualizar',
+  templateUrl: './visualizar.component.html',
+  styleUrls: ['./visualizar.component.css'],
   providers: [DecimalPipe]
 })
-export class BusquedaComponent implements OnInit {
+
+
+export class VisualizarComponent implements OnInit {
+
   countries$: Observable<Country[]>;
   filter = new FormControl('');
   
   PaisSeleccionado: string;
-  activo:number = 0;
   constructor(pipe: DecimalPipe, private modalService: NgbModal) {
     this.countries$ = this.filter.valueChanges.pipe(
       startWith(''),
       map(text => search(text, pipe))
     );
   }
-
   ngOnInit() {
   }
-
   onRowClicked(row){
     
     this.PaisSeleccionado=row;
     console.log(this.PaisSeleccionado);
-    this.activo=1;
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = this.PaisSeleccionado;
+  }
+
+  open() {
+    const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = this.PaisSeleccionado;
   }
 
 

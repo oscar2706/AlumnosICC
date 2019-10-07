@@ -1,29 +1,72 @@
-<p>You can do filter table data, in this case with observables and our <code>NgbHighlight</code> component used in Typeahead</p>
-
-<form>
-  <div class="form-group form-inline">
-      Full text search: <input class="form-control ml-2" type="text" [formControl]="filter"/>
+<div class="container-fluid my-5 ">
+  <div class="row">
+    <div class="col align-self-center ">
+      <form>
+        <label>Buscar Profesor</label>
+        <div class="form-group form-inline">
+           Nombre:
+          <input class="form-control ml-2" type="text" [formControl]="filter" />
+        </div>
+      </form>
+    </div>
   </div>
-</form>
+  <div class="row">
+    <div class="align-self-center col-sm-12 col-md-6 col-lg-6">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Tutores</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let country of countries$ | async; index as i" (click)="onRowClicked(country.name)" [ngClass]="{'bg-info': country.name==PaisSeleccionado}" >
+            <th scope="row" >{{ i + 1 }}</th>
+            <td>
+              <ngb-highlight [result]="country.name" [term]="filter.value" ></ngb-highlight>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class=" align-self-center col-sm-12 col-md-6 col-lg-6">
+      <table class="table table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Grupos</th>
+            <th scope="col">Generacion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--<tr *ngFor="let country of countries$ | async; index as i">
+                <td>
+                  <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight>
+                </td>
+              </tr>!-->
+          <tr >
 
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Country</th>
-    <th scope="col">Area</th>
-    <th scope="col">Population</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let country of countries$ | async; index as i">
-    <th scope="row">{{ i + 1 }}</th>
-    <td>
-      <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + country.flag" class="mr-2" style="width: 20px">
-      <ngb-highlight [result]="country.name" [term]="filter.value"></ngb-highlight>
-    </td>
-    <td><ngb-highlight [result]="country.area | number" [term]="filter.value"></ngb-highlight></td>
-    <td><ngb-highlight [result]="country.population | number" [term]="filter.value"></ngb-highlight></td>
-  </tr>
-  </tbody>
-</table>
+            <td>ICC031TOP</td>
+            <td>2016</td>
+          </tr>
+          <tr>
+            <td>ICC031TOP</td>
+            <td>2016</td>
+          </tr>
+          <tr>
+            <td>ICC031TOP</td>
+            <td>2016</td>
+          </tr>
+          <tr>
+            <td>ICC031TOP</td>
+            <td>2016</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="activo==1 && activo2==1">
+      <button class="btn btn-primary btn-lg my-3 mx-1">Guardar Asignación</button>
+    </div>
+
+</div>

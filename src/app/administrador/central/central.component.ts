@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'ngbd-modal-content',

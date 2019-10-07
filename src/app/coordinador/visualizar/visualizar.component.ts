@@ -7,7 +7,6 @@ import { map, startWith } from 'rxjs/operators';
 import { CoordinadorService } from "../../services/coordinador.service";
 import { Trabajador } from "../../models/trabajador";
 import { Seccion } from "../../models/seccion";
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -23,9 +22,7 @@ export class NgbdModalContent implements OnInit{
 
   ngOnInit() {
     this.coordinadorService.getSeccionesFromTrabajador(this.numeroTrabajador).subscribe(data => {
-      console.log(this.numeroTrabajador);
       this.seccionesTutor = data;
-      console.log(this.seccionesTutor);
     });
   }
 }

@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import {NgxPaginationModule} from "ngx-pagination";
 import { CommonModule } from "@angular/common";
 import { BusquedaComponent } from "./busqueda/busqueda.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -26,7 +27,8 @@ import { AppRoutingModule } from "../app-routing.module";
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   exports: [PrincipalComponent, NgbdModalContent],
   entryComponents: [NgbdModalContent]

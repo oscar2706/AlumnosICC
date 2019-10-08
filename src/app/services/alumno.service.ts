@@ -76,6 +76,14 @@ export class AlumnoService {
     return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'password': password});
   }
 
+  updateAlumnoProyeccionRealizada(matricula) {
+    return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'proyeccion_realizada': 1});
+  }
+
+  createMateriaProyeccion(matricula, clave, fecha) {
+    return this.http.post(this.API + '/materias_proyecciones', {'matricula': matricula, 'clave': clave, 'fecha': fecha});
+  }
+
   accesoCorrecto(matricula) {
     this.matricula = matricula;
   }

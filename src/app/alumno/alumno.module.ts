@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import {NgxPaginationModule} from "ngx-pagination";
 import { CommonModule } from "@angular/common";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -26,7 +27,8 @@ import { AppRoutingModule } from '../app-routing.module';
     AlumnoVentanaOptativasComponent,
     AlumnoVentanaProyeccionComponent
   ],
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, AppRoutingModule,
+    NgxPaginationModule],
   exports: [AlumnoVentanaMateriasComponent, AlumnoVentanaOptativasComponent, AlumnoVentanaProyeccionComponent]
 })
 export class AlumnoModule {}

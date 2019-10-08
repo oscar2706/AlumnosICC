@@ -10,9 +10,9 @@ import { Alumno } from '../../models/alumno';
 export class AlumnoVentanaProyeccionComponent implements OnInit {
   matricula: string;
   alumno: Alumno;
-  public materiasSeleccionadas: number[];
+  public materiasSeleccionadas: string[];
 
-  materiasProyeccion(materias: number[]) {
+  materiasProyeccion(materias: string[]) {
     this.materiasSeleccionadas = materias;
   }
 

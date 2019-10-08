@@ -72,7 +72,10 @@ export class BusquedaComponent implements OnInit {
 
   Asignar() {
     this.coordinadorService.updateSeccion(this.seccionSeleccionada,this.tutorSeleccionado).subscribe(data => {
-      console.log(data);
+      this.seccionSeleccionada = "";
+      this.tutorSeleccionado = "";
+      this.seleccionSeccion = 0;
+      this.seleccionTutor = 0;
     });
   }
 }

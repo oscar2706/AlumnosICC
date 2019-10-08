@@ -4,8 +4,10 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { TutorService } from '../../services/tutor.service';
+import { AlumnoService } from '../../services/alumno.service'
 import { Alumno } from '../../models/alumno';
 import { Seccion } from '../../models/seccion';
+import { Router } from '@angular/router';
 
 @Component({
   selector: "app-vista-principal",
@@ -15,7 +17,7 @@ import { Seccion } from '../../models/seccion';
 })
 export class VistaPrincipalComponent implements OnInit {
   @Input() numeroTrabajador;
-  pageSize: number = 8;
+  pageSize: number = 10;
   alumnos: Alumno[];
   alumnos$: Observable<Alumno[]>;
   secciones: Seccion[];
@@ -23,7 +25,7 @@ export class VistaPrincipalComponent implements OnInit {
   alumnoSeleccionado: string;
   filter = new FormControl("");
 
-  constructor( private pipe: DecimalPipe, private tutorService: TutorService
+  constructor( private pipe: DecimalPipe, private tutorService: TutorService, private router: Router, private alumnoService: AlumnoService
   ) {}
 
   ngOnInit() {
@@ -37,7 +39,6 @@ export class VistaPrincipalComponent implements OnInit {
             startWith(""),
             map(text => this.search(text, this.pipe))
           );
-          console.log(this.alumnos);
         });
       }
     })
@@ -50,8 +51,12 @@ export class VistaPrincipalComponent implements OnInit {
         startWith(""),
         map(text => this.search(text, this.pipe))
       );
-      console.log(this.alumnos);
     });
+  }
+
+  seleccionarAlumno(matricula) {
+    this.alumnoService.accesoCorrecto(matricula);
+    this.router.navigate(["/alumno/materias"]);
   }
 
   search(text: string, pipe: PipeTransform): Alumno[] {

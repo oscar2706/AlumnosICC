@@ -123,6 +123,7 @@ export class LoginComponent implements OnInit {
         this.alumnoService
           .getAlumno(this.loginForm.value.user)
           .subscribe(data => {
+            console.log(data);
             this.alumnoLogin = data;
             this.verificacionLoginAlumno();
           });
@@ -131,8 +132,11 @@ export class LoginComponent implements OnInit {
         this.tutorService
           .getTrabajador(this.loginForm.value.user)
           .subscribe(data => {
+            console.log(data);
             this.tutorLogin = data;
             this.verificacionLoginTutor();
+          }, error => {
+            
           });
         break;
       case 3:

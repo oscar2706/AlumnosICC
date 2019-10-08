@@ -24,6 +24,7 @@ export class CentralComponent implements OnInit {
   alumnoSeleccionado:string;
   nombreSeleccionado: string;
   defseccion:number=0;
+  seleccionAlumno:number=0;
 
   constructor(private modalService: NgbModal, private administradorService: AdministradorService) { }
 
@@ -37,11 +38,15 @@ export class CentralComponent implements OnInit {
     if(this.alumnoSeleccionado == matricula) {
       this.alumnoSeleccionado = "";
       this.nombreSeleccionado=nombre;
+      this.seleccionAlumno=0;
     }
     else {
       this.alumnoSeleccionado = matricula;
       this.nombreSeleccionado=nombre;
+      this.seleccionAlumno=1;
     }
+
+    console.log(this.seleccionAlumno);
   }
 
 

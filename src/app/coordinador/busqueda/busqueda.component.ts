@@ -71,10 +71,8 @@ export class BusquedaComponent implements OnInit {
     });
   }
 
-  prueba() {
-    //cambiar el nombre a la función por algo más representativo y pasar los valores del tutor y la seccion seleccionada. 
-    //Verificar que sí se esten reaizando los cambios y agregar lo del modal
-    this.coordinadorService.updateSeccion('1', '100524845').subscribe(data => {
+  Asignar() {
+    this.coordinadorService.updateSeccion(this.seccionSeleccionada,this.tutorSeleccionado).subscribe(data => {
       console.log(data);
     });
   }

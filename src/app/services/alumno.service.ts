@@ -98,7 +98,7 @@ export class AlumnoService {
 
   saveMateriasMarcadas () {
     this.materias_marcado.forEach(materia => {
-      this.createMateriaCursada(this.getAcceso(), materia.clave)
+      this.createMateriaCursada(this.getAcceso(), materia)
         .subscribe(respuesta => {
           console.log('se marco:' + respuesta);
         });

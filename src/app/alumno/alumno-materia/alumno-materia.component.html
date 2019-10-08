@@ -1,13 +1,25 @@
 <div class="card text-center text-center mx-0 px-0"
   [ngClass]="{
-    'bg-info': datos.optativa === 0
+      'card-cienciasBasicas': datos.area === 'Ciencias básicas',
+      'card-ingenieria': datos.area === 'Ingeniería en computación',
+      'card-tecnologia': datos.area === 'Tecnología',
+      'card-general': datos.area === 'Formación general universitaria'
   }"
-  (click)="onMarca()">
+  (mouseover)="dentro = true" (mouseleave)="dentro = false">
+  <i class="material-icons done m-0 p-0" *ngIf="datos.marcada" >done</i>
   <div class="card-body px-1 py-1">
     {{datos.nombre}}
   </div>
-  <div class="card-footer text-right p-0 pr-2">
-    {{datos.creditos}}
-    <p class="text-danger"> {{datos.marcada}} </p>
+  <div class="card-footer p-0 m-0 text-right bg-light justify-content">
+    <div class="row justify-content-center" *ngIf="dentro == true && !datos.marcada">
+      <button class="btn btn-success p-1" type="button" (click)="onMarca()">Marcar</button>
+    </div>
+    <div class="row justify-content-center" *ngIf="dentro == true && datos.marcada">
+      <button class="btn btn-danger p-1" type="button" (click)="onMarca()">Desmarcar</button>
+    </div>
+    <p class="p-0 pr-4 m-0">
+      {{datos.creditos}}
+      <!-- {{datos.marcada}} -->
+    </p>
   </div>
 </div>

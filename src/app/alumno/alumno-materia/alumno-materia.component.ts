@@ -18,6 +18,8 @@ export class AlumnoMateriaComponent {
     marcada : 0
   };
 
+  dentro = false;
+
   constructor (private alumnoService: AlumnoService) { }
 
   onMarca () {

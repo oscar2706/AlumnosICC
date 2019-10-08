@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TutorService } from '../../services/tutor.service';
+
 
 @Component({
   selector: 'app-tutor-ventana-principal',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tutor-ventana-principal.component.css']
 })
 export class TutorVentanaPrincipalComponent implements OnInit {
+  numeroTrabajador: string;
 
-  constructor() { }
+  constructor(private tutorService: TutorService) { }
 
   ngOnInit() {
+    this.numeroTrabajador = this.tutorService.getAcceso();
   }
 
 }

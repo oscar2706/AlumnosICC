@@ -17,13 +17,13 @@ export class AlumnoMateriaComponent implements OnInit, OnDestroy {
   constructor(private alumnoService: AlumnoService) { }
 
   ngOnInit () {
-    if (this.clave) {
+    /*if (this.clave) {
       // console.log(this.clave);
       this.subscription = this.alumnoService.getMateria(this.clave).subscribe(data => {
         this.materia = data;
         console.log(data);
       });
-    }
+    }*/
   }
 
   ngOnDestroy () {

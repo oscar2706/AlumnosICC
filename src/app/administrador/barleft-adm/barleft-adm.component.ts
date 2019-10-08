@@ -39,6 +39,7 @@ export class BarleftAdmComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
         });
+        location.reload(true);
     } else {
       console.log("Prueba: " + this.opcion);
       this.fecha_inicio =
@@ -50,6 +51,8 @@ export class BarleftAdmComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
         });
+        location.reload(true);
     }
+    
   }
 }

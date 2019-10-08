@@ -1,11 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdministradorService } from '../../services/administrador.service';
 import { Alumno } from '../../models/alumno';
+import { DecimalPipe } from "@angular/common";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
 
 @Component({
   selector: 'ngbd-modal-content',
   templateUrl: './modal-contasenaRestaurada.component.html'
+  
 })
 export class NgbdModalContent {
   name:string;
@@ -16,7 +21,9 @@ export class NgbdModalContent {
 @Component({
   selector: 'app-central',
   templateUrl: './central.component.html',
-  styleUrls: ['./central.component.css']
+  styleUrls: ['./central.component.css'], 
+  providers: [DecimalPipe]
+  
 })
 export class CentralComponent implements OnInit {
   alumnos: Alumno[];
@@ -25,12 +32,18 @@ export class CentralComponent implements OnInit {
   nombreSeleccionado: string;
   defseccion:number=0;
   seleccionAlumno:number=0;
+  alumnos$: Observable<Alumno[]>;
+  filter = new FormControl("");
 
-  constructor(private modalService: NgbModal, private administradorService: AdministradorService) { }
+  constructor( private pipe: DecimalPipe, private modalService: NgbModal, private administradorService: AdministradorService) { }
 
   ngOnInit() {
     this.administradorService.getAlumnos().subscribe(data => {
       this.alumnos = data;
+      this.alumnos$ = this.filter.valueChanges.pipe(
+        startWith(""),
+        map(text => this.search(text, this.pipe))
+      );
     });
   }
 
@@ -45,10 +58,14 @@ export class CentralComponent implements OnInit {
       this.nombreSeleccionado=nombre;
       this.seleccionAlumno=1;
     }
-
-    console.log(this.seleccionAlumno);
   }
-
+    search(text: string, pipe: PipeTransform): Alumno[] {
+      return this.alumnos.filter(alumno => {
+        const term = text.toLowerCase();
+        return alumno.nombre.toLowerCase().includes(term);
+      });
+  
+  }
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);

@@ -8,13 +8,23 @@
           </div>
         </div>
         <div class="row my-4 justify-content-center">
+           
           <select class="form-control" style="width: 100" [(ngModel)]="pageSize">
             <option [ngValue]="10">10 alumnos por página</option>
             <option [ngValue]="30">30 alumnos por página</option>
             <option [ngValue]="50">50 alumnos por página</option>
           </select>
         </div>
+
+        <div class="row my-4 justify-content-center">
+            <form>
+                <input class="form-control ml-2" type="text" [formControl]="filter" placeholder="Buscar Alumno" />
+            </form> 
+            
+          </div>
+
         <div class="row my-5">
+            
           <table class="table table-hover">
             <thead class="thead-dark">
               <tr>
@@ -26,11 +36,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let alumno of alumnos | paginate: {itemsPerPage: pageSize, currentPage: p}"
+              <tr *ngFor="let alumno of alumnos$ | async | paginate: {itemsPerPage: pageSize, currentPage: p}"
                 (click)="seleccionarAlumno(alumno.matricula, alumno.nombre)"
                 [ngClass]="{'bg-info': alumno.matricula==alumnoSeleccionado}">
                 <th scope="row">{{ alumno.matricula }}</th>
-                <td>{{ alumno.nombre }}</td>
+                <td><ngb-highlight [result]="alumno.nombre" [term]="filter.value"></ngb-highlight></td>
                 <td>{{ alumno.avance_realizado }}</td>
                 <td>{{ alumno.proyeccion_realizada }}</td>
                 <td>{{ alumno.seccion_id }}</td>

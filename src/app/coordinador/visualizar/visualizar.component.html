@@ -18,7 +18,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tutor of tutores$ | async" (click)="seleccionarTutor(tutor.id, tutor.nombre)"
+          <tr *ngFor="let tutor of tutores$ | async | paginate: {itemsPerPage:pageSize,currentPage:p}" (click)="seleccionarTutor(tutor.id, tutor.nombre)"
             [ngClass]="{'bg-info': tutor.id===tutorSeleccionado}">
             <th scope="row">{{ tutor.id }}</th>
             <td>
@@ -28,5 +28,15 @@
         </tbody>
       </table>
     </div>
+    <div class="d-flex justify-content-between p-2">
+      <pagination-controls [id]=""(pageChange)="p = $event"></pagination-controls>
+      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">
+        <option [ngValue]="10">10 items per page</option>
+        <option [ngValue]="20">20 items per page</option>
+        <option [ngValue]="30">30 items per page</option>
+      </select>
+    </div>
+
   </div>
+
 </div>

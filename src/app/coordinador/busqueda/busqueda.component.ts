@@ -14,6 +14,8 @@ import { Seccion } from "../../models/seccion";
   providers: [DecimalPipe]
 })
 export class BusquedaComponent implements OnInit {
+  page = 1;
+  pageSize=8;
   tutores: Trabajador[];
   tutores$: Observable<Trabajador[]>;
   secciones: Seccion[];

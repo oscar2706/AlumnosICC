@@ -1,5 +1,5 @@
 import { Component, OnInit, PipeTransform} from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, SlicePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -34,6 +34,8 @@ export class NgbdModalContent implements OnInit{
   providers: [DecimalPipe]
 })
 export class VisualizarComponent implements OnInit {
+  page = 1;
+  pageSize=10;
   tutores: Trabajador[];
   tutores$: Observable<Trabajador[]>;
   tutorSeleccionado: string;
@@ -44,7 +46,8 @@ export class VisualizarComponent implements OnInit {
   constructor(private pipe: DecimalPipe, private modalService: NgbModal, private coordinadorService: CoordinadorService) {
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.coordinadorService.getTrabajadores().subscribe(data => {
       this.tutores = data;
       this.tutores$ = this.filter.valueChanges.pipe(

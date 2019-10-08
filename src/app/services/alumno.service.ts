@@ -77,7 +77,7 @@ export class AlumnoService {
   }
 
   updateAlumnoProyeccionRealizada(matricula) {
-    return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'proyeccion_realizada': 0});
+    return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'proyeccion_realizada': 1});
   }
 
   createMateriaProyeccion(matricula, clave, fecha) {

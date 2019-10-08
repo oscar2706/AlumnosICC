@@ -12,6 +12,8 @@ import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 export class AlumnoService {
   API = 'http://127.0.0.1:8000';
   matricula: string;
+  materias_marcado: Array<string> = [];
+
   constructor (private http: HttpClient) { }
 
   getAlumno (matricula) {
@@ -28,6 +30,10 @@ export class AlumnoService {
 
   getMapa () {
     return this.http.get<Materia[]>(this.API + '/alumnos/' + this.matricula + '/mapa_materias');
+  }
+
+  getMateriasDisponiblesProyeccion () {
+    return this.http.get<Materia[]>(this.API + '/proyecciones/materias_disponibles/' + this.matricula);
   }
 
   getMateriasCursadas (matricula) {
@@ -60,15 +66,26 @@ export class AlumnoService {
     return this.matricula;
   }
 
-  //Todo
-  /*
-  Función 1:
-  Se requiere la función para poder conocer el número de créditos y/o porcentaje del alumno
-  Paso de parámetros, probablemente la matrícula del alumno
-  Petición tipo GET según yo
+  // Materias Marcadas
+  addMateriaMarcada (clave : string) {
+    this.materias_marcado.push(clave);
+  }
 
-  Función 2:
-  Se requiere la función para poder verificar los requisitos de una materia
-  Paso de parámetros, probablemente la clave de la materia
-  */
+  removeMateriaMarcada (clave: string) {
+    const index = this.materias_marcado.indexOf(clave);
+    console.log(index);
+    if (index > -1)
+      this.materias_marcado.splice(index, 1);
+  }
+
+  saveMateriasMarcadas () {
+    this.materias_marcado.forEach(materia => {
+      this.createMateriaCursada(this.getAcceso(), materia.clave)
+        .subscribe(respuesta => {
+          console.log('se marco:' + respuesta);
+        });
+    });
+  }
+
+  //Proyeccion
 }

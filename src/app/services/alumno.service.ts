@@ -39,13 +39,13 @@ export class AlumnoService {
   }
 
   createMateriaCursada (matricula, clave) {
-    return this.http.post<MateriaCursada []>(this.API + '/materias_cursadas', {'matricula': matricula, 'clave': clave});
+    return this.http.post<boolean>(this.API + '/materias_cursadas', {'matricula': matricula, 'clave': clave});
   }
 
   deleteMateriaCursada (matricula, clave) {
     let parametros = new HttpParams().set("matricula", matricula).set("clave", clave);
 
-    return this.http.delete<MateriaCursada []>(this.API + '/materias_cursadas', { params: parametros });
+    return this.http.delete(this.API + '/materias_cursadas', { params: parametros });
   }
 
   updateAlumnoPassword(matricula, password) {

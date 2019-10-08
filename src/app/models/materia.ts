@@ -4,5 +4,6 @@ export interface Materia {
   creditos: number,
   semestre: number,
   area: string,
-  optativa: boolean
+  optativa: boolean,
+  marcada? :boolean
 }

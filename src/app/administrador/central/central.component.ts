@@ -56,9 +56,15 @@ export class CentralComponent implements OnInit {
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
+    this.prueba();
   }
 
   prueba() {
-    console.log("Prueba");
+    //Esta función básicamente debe de estar en el modal de confirmación
+    //Se le debe dar un nombre más representativo a la función y se debe de pasar el valor de la matrícula al modal
+    //Se debe asegurar de que ya se haya seleccionado un alumno para poder abrir el modal
+    this.administradorService.updateAlumnosPassword(this.alumnoSeleccionado).subscribe(data => {
+      console.log(data);
+    });
   }
 }

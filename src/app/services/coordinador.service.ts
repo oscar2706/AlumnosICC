@@ -23,10 +23,7 @@ export class CoordinadorService {
     return this.http.get<Seccion []>(this.API + '/trabajadores/' + numeroTrabajador + '/secciones');
   }
 
-  //ToDo:
-  /*
-  Se requiere la función para poder asignar el tutor a la seccion seleccionada
-  Paso de parámetros, probablemente el número de trabajador y el id de la sección
-  Petición tipo POST según yo
-  */
+  updateSeccion (idSeccion, noTrabajador) {
+    return this.http.put<Seccion>(this.API + '/secciones/' + idSeccion, {'trabajador_id': noTrabajador});
+  }
 }

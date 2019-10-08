@@ -1,69 +1,30 @@
-import { Component, OnInit,PipeTransform} from '@angular/core';
+import { Component, OnInit, PipeTransform} from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
-
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
+import { CoordinadorService } from "../../services/coordinador.service";
+import { Trabajador } from "../../models/trabajador";
+import { Seccion } from "../../models/seccion";
 
 @Component({
   selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Grupos Asignados</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>{{name}}</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-  `
+  templateUrl: './modal-visualizar.component.html'
 })
-export class NgbdModalContent {
- name:string;
+export class NgbdModalContent implements OnInit{
+  numeroTrabajador: string;
+  nombre:string;
+  seccionesTutor: Seccion[];
 
-  constructor(public activeModal: NgbActiveModal) {}
-}
-
-interface Country {
-  name: string;
-  flag: string;
-}
-
-const COUNTRIES: Country[] = [
-  {
-    name: 'Abraham Sanchez',
-    flag: 'f/f3/Flag_of_Russia.svg',
-
-  },
-  {
-    name: 'Carlos Armando Rios',
-    flag: 'c/cf/Flag_of_Canada.svg',
-  
-  },
-  {
-    name: 'Josefina Guerrero Garcia',
-    flag: 'a/a4/Flag_of_the_United_States.svg',
-  
-  },
-  {
-    name: 'Bernardo Parra',
-    flag: 'f/fa/Flag_of_the_People%27s_Republic_of_China.svg',
-
+  constructor(public activeModal: NgbActiveModal, private coordinadorService: CoordinadorService) {
   }
-];
 
-
-function search(text: string, pipe: PipeTransform): Country[] {
-  return COUNTRIES.filter(country => {
-    const term = text.toLowerCase();
-    return country.name.toLowerCase().includes(term)
-
-  });
+  ngOnInit() {
+    this.coordinadorService.getSeccionesFromTrabajador(this.numeroTrabajador).subscribe(data => {
+      this.seccionesTutor = data;
+    });
+  }
 }
 
 @Component({
@@ -72,34 +33,50 @@ function search(text: string, pipe: PipeTransform): Country[] {
   styleUrls: ['./visualizar.component.css'],
   providers: [DecimalPipe]
 })
-
-
 export class VisualizarComponent implements OnInit {
-
-  countries$: Observable<Country[]>;
+  tutores: Trabajador[];
+  tutores$: Observable<Trabajador[]>;
+  tutorSeleccionado: string;
+  nombreSeleccionado: string;
+  seleccionTutor: number = 0;
   filter = new FormControl('');
-  
-  PaisSeleccionado: string;
-  constructor(pipe: DecimalPipe, private modalService: NgbModal) {
-    this.countries$ = this.filter.valueChanges.pipe(
-      startWith(''),
-      map(text => search(text, pipe))
-    );
+
+  constructor(private pipe: DecimalPipe, private modalService: NgbModal, private coordinadorService: CoordinadorService) {
   }
+
   ngOnInit() {
+    this.coordinadorService.getTrabajadores().subscribe(data => {
+      this.tutores = data;
+      this.tutores$ = this.filter.valueChanges.pipe(
+        startWith(""),
+        map(text => this.search(text, this.pipe))
+      );
+    });
   }
-  onRowClicked(row){
-    
-    this.PaisSeleccionado=row;
-    console.log(this.PaisSeleccionado);
-    const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = this.PaisSeleccionado;
+
+  seleccionarTutor(idTutor, nombreTutor) {
+    if (this.tutorSeleccionado != idTutor) {
+      this.tutorSeleccionado = idTutor;
+      this.seleccionTutor = 1;
+      this.nombreSeleccionado = nombreTutor;
+      this.open();
+    } else {
+      this.tutorSeleccionado = "";
+      this.seleccionTutor = 0;
+      this.nombreSeleccionado = "";
+    }
   }
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = this.PaisSeleccionado;
+    modalRef.componentInstance.numeroTrabajador = this.tutorSeleccionado;
+    modalRef.componentInstance.nombre = this.nombreSeleccionado;
   }
 
-
+  search(text: string, pipe: PipeTransform): Trabajador[] {
+    return this.tutores.filter(tutor => {
+      const term = text.toLowerCase();
+      return tutor.nombre.toLowerCase().includes(term);
+    });
+  }
 }

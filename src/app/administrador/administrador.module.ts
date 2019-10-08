@@ -10,6 +10,7 @@ import { ResetPasswdComponent } from "./reset-passwd/reset-passwd.component";
 import { ProyeccionesComponent } from "./proyecciones/proyecciones.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BarleftAdmComponent } from "./barleft-adm/barleft-adm.component";
+import { AppRoutingModule } from '../app-routing.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { BarleftAdmComponent } from "./barleft-adm/barleft-adm.component";
     BarleftAdmComponent,
     NgbdModalContent
   ],
-  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxPaginationModule],
+  imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxPaginationModule, AppRoutingModule],
   exports: [ResetPasswdComponent, ProyeccionesComponent],
   entryComponents: [NgbdModalContent]
 })

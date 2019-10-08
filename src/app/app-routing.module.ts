@@ -18,7 +18,8 @@ const routes: Routes = [
   {path: 'coordinador', component: PrincipalComponent},
   {path: 'administrador/restaurar', component: ResetPasswdComponent},
   {path: 'administrador/proyeccion', component: ProyeccionesComponent},
-  {path: '', redirectTo: '/login', pathMatch: 'full'}
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: '**', component: LoginComponent}
 ];
 
 @NgModule({

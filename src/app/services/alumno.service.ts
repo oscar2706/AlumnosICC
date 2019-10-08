@@ -34,17 +34,17 @@ export class AlumnoService {
   }
 
   createMateriaCursada (matricula, clave) {
-    return this.http.post<MateriaCursada []>(this.API + '/materias_cursadas', {'matricula': matricula, 'clave': clave});
+    return this.http.post<MateriaCursada>(this.API + '/materias_cursadas', {'matricula': matricula, 'clave': clave});
   }
 
   deleteMateriaCursada (matricula, clave) {
     let parametros = new HttpParams().set("matricula", matricula).set("clave", clave);
 
-    return this.http.delete<MateriaCursada []>(this.API + '/materias_cursadas', { params: parametros });
+    return this.http.delete<MateriaCursada>(this.API + '/materias_cursadas', { params: parametros });
   }
 
   updateAlumnoPassword(matricula, password) {
-    return this.http.put<Alumno []>(this.API + '/alumnos/' + matricula, {'password': password});
+    return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'password': password});
   }
 
   accesoCorrecto(matricula) {

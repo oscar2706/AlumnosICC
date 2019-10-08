@@ -1,9 +1,10 @@
-<div class="card h-100 text-center text-white text-center m-auto"
-  [ngClass]="{'bg-info': materia.optativa === 0, 'bg-dark': materia.optativa === 1}">
-  <div class="card-body">
-    {{materia.nombre}}
+<div class="card text-center text-center mx-0 px-0" [ngClass]="{
+    'bg-info': datos.optativa === 0
+  }">
+  <div class="card-body px-1 py-1">
+    {{datos.nombre}}
   </div>
-  <div class="card-footer text-right">
-    {{materia.creditos}}
+  <div class="card-footer text-right p-0 pr-2">
+    {{datos.creditos}}
   </div>
 </div>

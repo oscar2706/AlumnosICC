@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AlumnoService } from '../../services/alumno.service'
+import { Materia } from 'src/app/models/materia';
 
 @Component({
   selector: 'app-alumno-materias',
@@ -9,34 +10,29 @@ import { AlumnoService } from '../../services/alumno.service'
 export class AlumnoMateriasComponent implements OnInit, OnDestroy {
   subscription;
 
-  materias: any;
+  materias: Materia[] = [];
   constructor(private alumnoService: AlumnoService) { }
 
   ngOnInit () {
-    // this.alumnoService.getMaterias().pipe(
-    //   map(data => data.filter(materia => materia.semestre == 1))
-    // ).subscribe(data => {
-    //   this.materias1 = data;
-    //   console.log(this.materias1);
-    // });
     this.subscription = this.alumnoService.getMaterias().subscribe(data => {
       this.materias = data;
-      console.log(this.materias);
     });
-
   }
 
   ngOnDestroy () {
     this.subscription.unsubscribe();
   }
 
-  getMateria (nombre: string) {
+  getMateria (clave: string): Materia {
+    let materia_encontrada: Materia;
     this.materias.forEach(materia => {
-      if (materia.nombre == nombre) {
-        console.log(materia);
-        return materia;
+      if (materia.clave == clave) {
+        // console.log('materia encontrada');
+        // console.log(materia);
+        materia_encontrada = materia;
       }
     });
+    return materia_encontrada;
   }
 
 }

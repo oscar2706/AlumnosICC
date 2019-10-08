@@ -13,3 +13,21 @@
 .general {
   background-color: #FFFFCB
 }
+
+.card-cienciasBasicas {
+  background-color: #E9FDC9;
+  border-color    : #4D7B40;
+  color           : #49525B;
+}
+
+.card-ingenieria {
+  border-color: #CDDFFF
+}
+
+.card-tecnologia {
+  border-color: #D4C7E8
+}
+
+.card-general {
+  border-color: #FFFFCB
+}

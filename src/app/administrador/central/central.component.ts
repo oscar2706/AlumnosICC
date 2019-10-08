@@ -5,25 +5,12 @@ import { Alumno } from '../../models/alumno';
 
 @Component({
   selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Exito</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>La contraseña se restauro correctamente</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Ok</button>
-    </div>
-  `
+  templateUrl: './modal-contasenaRestaurada.component.html'
 })
 export class NgbdModalContent {
   name:string;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private administradorService: AdministradorService) {}
 }
 
 @Component({
@@ -35,6 +22,7 @@ export class CentralComponent implements OnInit {
   alumnos: Alumno[];
   pageSize: number = 30;
   alumnoSeleccionado:string;
+  nombreSeleccionado: string;
   defseccion:number=0;
 
   constructor(private modalService: NgbModal, private administradorService: AdministradorService) { }
@@ -45,17 +33,21 @@ export class CentralComponent implements OnInit {
     });
   }
 
-  seleccionarAlumno(matricula) {
+  seleccionarAlumno(matricula, nombre) {
     if(this.alumnoSeleccionado == matricula) {
       this.alumnoSeleccionado = "";
+      this.nombreSeleccionado=nombre;
     }
     else {
       this.alumnoSeleccionado = matricula;
+      this.nombreSeleccionado=nombre;
     }
   }
 
+
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = this.nombreSeleccionado;
     this.prueba();
   }
 

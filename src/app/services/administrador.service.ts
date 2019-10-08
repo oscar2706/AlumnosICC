@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Proyeccion } from '../models/proyeccion';
+import { Avance } from '../models/avance';
 import { Alumno } from '../models/alumno';
 
 @Injectable({
@@ -10,6 +11,10 @@ import { Alumno } from '../models/alumno';
 export class AdministradorService {
   API = 'http://127.0.0.1:8000';
   constructor (private http: HttpClient) { }
+
+  getAlumnos() {
+    return this.http.get<Alumno []>(this.API + '/alumnos');
+  }
 
   getProyecciones() {
     return this.http.get<Proyeccion []>(this.API + '/proyecciones');
@@ -20,19 +25,14 @@ export class AdministradorService {
   }
 
   updateAlumnosPassword(matricula) {
-    return this.http.put<Alumno []>(this.API + '/alumnos/' + matricula, {'password': matricula});
+    return this.http.put<Alumno>(this.API + '/alumnos/' + matricula, {'password': matricula});
   }
 
-  //ToDo:
-  /*
-  Funcion 1:
-  Se requiere la función para poder crear los nuevos periodos de las proyecciones
-  Paso de parámetros, probablemente la fecha de inicio y la fecha de finalización de la proyección
-  Petición tipo POST según yo
+  createProyeccion(fecha_inicio, fecha_cierre) {
+    return this.http.post<Proyeccion>(this.API + '/proyecciones', {'fecha_inicio': fecha_inicio, 'fecha_fin': fecha_cierre});
+  }
 
-  Función 2:
-  Se requiere la función para poder crear los nuevos periodos del marcado del avance
-  Paso de parámetros, probablemente la fecha de inicio y la fecha de finalización del periodo de avance
-  Petición tipo POST según yo 
-  */
+  createAvance(fecha_inicio, fecha_cierre) {
+    return this.http.post<Avance>(this.API + '/avances', {'fecha_inicio': fecha_inicio, 'fecha_fin': fecha_cierre});
+  }
 }

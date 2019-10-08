@@ -1,5 +1,5 @@
 import { Component, OnInit, PipeTransform} from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import { DecimalPipe, SlicePipe } from '@angular/common';
 import { FormControl } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -7,7 +7,6 @@ import { map, startWith } from 'rxjs/operators';
 import { CoordinadorService } from "../../services/coordinador.service";
 import { Trabajador } from "../../models/trabajador";
 import { Seccion } from "../../models/seccion";
-import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'ngbd-modal-content',
@@ -23,9 +22,7 @@ export class NgbdModalContent implements OnInit{
 
   ngOnInit() {
     this.coordinadorService.getSeccionesFromTrabajador(this.numeroTrabajador).subscribe(data => {
-      console.log(this.numeroTrabajador);
       this.seccionesTutor = data;
-      console.log(this.seccionesTutor);
     });
   }
 }
@@ -37,6 +34,8 @@ export class NgbdModalContent implements OnInit{
   providers: [DecimalPipe]
 })
 export class VisualizarComponent implements OnInit {
+  page = 1;
+  pageSize=10;
   tutores: Trabajador[];
   tutores$: Observable<Trabajador[]>;
   tutorSeleccionado: string;
@@ -47,7 +46,8 @@ export class VisualizarComponent implements OnInit {
   constructor(private pipe: DecimalPipe, private modalService: NgbModal, private coordinadorService: CoordinadorService) {
   }
 
-  ngOnInit() {
+  ngOnInit() 
+  {
     this.coordinadorService.getTrabajadores().subscribe(data => {
       this.tutores = data;
       this.tutores$ = this.filter.valueChanges.pipe(

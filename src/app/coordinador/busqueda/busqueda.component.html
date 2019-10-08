@@ -20,7 +20,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let tutor of tutores$ | async" (click)="seleccionarTutor(tutor.id)"
+          <tr *ngFor="let tutor of tutores$ | async | paginate: {itemsPerPage:pageSize,currentPage:p}" (click)="seleccionarTutor(tutor.id)"
             [ngClass]="{'bg-info': tutor.id===tutorSeleccionado}">
             <th scope="row">{{ tutor.id }}</th>
             <td>
@@ -30,6 +30,7 @@
         </tbody>
       </table>
     </div>
+    
     <div class=" align-self-center col-sm-12 col-md-6 col-lg-6">
       <table class="table table-hover">
         <thead class="thead-dark">
@@ -46,8 +47,11 @@
         </tbody>
       </table>
     </div>
+    <div class="d-flex justify-content-between p-2">
+        <pagination-controls [id]=""(pageChange)="p = $event"></pagination-controls>
+      </div>
   </div>
   <div class="row justify-content-center" *ngIf="seleccionTutor && seleccionSeccion">
-    <button class="btn btn-primary btn-lg my-3 mx-1">Guardar Asignación</button>
+    <button class="btn btn-primary btn-lg my-3 mx-1" (click)="prueba()">Guardar Asignación</button>
   </div>
 </div>

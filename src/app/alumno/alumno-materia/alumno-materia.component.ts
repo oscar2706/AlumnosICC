@@ -1,25 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-
-interface Materia {
-  clave: number,
-  nombre: string,
-  creditos: number,
-  semestre: number,
-  optativa: number
-}
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Materia } from '../../models/materia'
+import { AlumnoService } from '../../services/alumno.service'
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-alumno-materia',
   templateUrl: './alumno-materia.component.html',
   styleUrls: ['./alumno-materia.component.css']
 })
-export class AlumnoMateriaComponent implements OnInit {
+export class AlumnoMateriaComponent implements OnInit, OnDestroy {
+  @Input() clave: string;
+  subscription;
+  cursada: boolean;
+  materia: any = {clave: 1235, nombre: "Programación Concurrente y Paralela", creditos: 6, semestre: 7, optativa: 1};
 
-  materia: Materia = {clave: 1235, nombre: "Programación Concurrente y Paralela", creditos: 6, semestre: 7, optativa: 1};
+  constructor(private alumnoService: AlumnoService) { }
 
-  constructor() { }
+  ngOnInit () {
+    if (this.clave) {
+      // console.log(this.clave);
+      this.subscription = this.alumnoService.getMateria(this.clave).subscribe(data => {
+        this.materia = data;
+        console.log(data);
+      });
+    }
+  }
 
-  ngOnInit() {
+  ngOnDestroy () {
+    this.subscription.unsubscribe();
   }
 
 }

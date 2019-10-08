@@ -59,14 +59,19 @@ export class LoginModalComponent implements OnInit {
       if(this.usuarioSeleccionado == 1) {
         this.alumnoService.accesoCorrecto(this.numeroIdentificacion);
         this.alumnoService.updateAlumnoPassword(this.numeroIdentificacion, this.passwordForm.value.password).subscribe();
+        setTimeout(() => {
+          this.activeModal.close();
+          this.router.navigate(["/alumno/materias"]);
+        }, 1500);
       } 
       else {
-        
+        this.tutorService.accesoCorrecto(this.numeroIdentificacion);
+        this.tutorService.updateTutorPassword(this.numeroIdentificacion, this.passwordForm.value.password).subscribe();
+        setTimeout(() => {
+          this.activeModal.close();
+          this.router.navigate(["/tutor"]);
+        }, 1500);
       }
-      setTimeout(() => {
-        this.activeModal.close();
-        this.router.navigate(["alumno/materias"]);
-      }, 1500);
     } else {
       this.passwordModified = 0;
       this._success.next("Datos ingresados no coinciden");
@@ -118,6 +123,7 @@ export class LoginComponent implements OnInit {
         this.alumnoService
           .getAlumno(this.loginForm.value.user)
           .subscribe(data => {
+            console.log(data);
             this.alumnoLogin = data;
             this.verificacionLoginAlumno();
           });
@@ -126,8 +132,11 @@ export class LoginComponent implements OnInit {
         this.tutorService
           .getTrabajador(this.loginForm.value.user)
           .subscribe(data => {
+            console.log(data);
             this.tutorLogin = data;
             this.verificacionLoginTutor();
+          }, error => {
+            
           });
         break;
       case 3:
@@ -182,6 +191,7 @@ export class LoginComponent implements OnInit {
       if (this.loginForm.value.user == this.loginForm.value.password) {
         this.open(2);
       } else {
+        this.tutorService.accesoCorrecto(this.loginForm.value.user);
         this.router.navigate(["/tutor"]);
       }
     } else {

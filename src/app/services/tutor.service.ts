@@ -10,6 +10,7 @@ import { Seccion } from '../models/seccion';
 })
 export class TutorService {
   API = 'http://127.0.0.1:8000';
+  numeroTrabajador: string;
   constructor (private http: HttpClient) { }
 
   getTrabajador(numeroTrabajador) {
@@ -22,5 +23,17 @@ export class TutorService {
 
   getAlumnosFromSeccion (idSeccion) {
     return this.http.get<Alumno []>(this.API + '/secciones/' + idSeccion + '/alumnos');
+  }
+
+  updateTutorPassword (numeroTrabajador, password) {
+    return this.http.put<Trabajador>(this.API + '/trabajadores/' + numeroTrabajador, {'password': password});
+  }
+
+  accesoCorrecto(numeroTrabajador) {
+    this.numeroTrabajador = numeroTrabajador;
+  }
+
+  getAcceso() {
+    return this.numeroTrabajador;
   }
 }

@@ -55,15 +55,19 @@ export class AlumnoProyeccionComponent implements OnInit {
 
     for(var i=0; i<7; i++) {
       if(this.materiasProyeccion[i] == id) {
+        //console.log("La materia ya estaba marcada");
         this.materiasProyeccion[i] = "";
+        //console.log("Ruptura del ciclo de búsqueda");
         break;
       }
       else {
+        //console.log("Iteracion " + i+1);
         this.materiaRecorrido++;
       }
     }
 
     if(this.materiaRecorrido == 7) {
+      //console.log("La materia no está marcada");
       this.materiaNueva = 1;
     }
 
@@ -72,9 +76,12 @@ export class AlumnoProyeccionComponent implements OnInit {
     if(this.materiaNueva == 1) {
       for(var i=0; i<7; i++) {
         if(this.materiasProyeccion[i] == "") {
+          //console.log("Materia marcada");
           this.materiasProyeccion[i] = id;
+          //console.log("Ruptura del ciclo de marcado");
           break;
         } else {
+          //console.log("Iteracion " + i+1);
           this.materiaRecorrido ++;
         }
       }

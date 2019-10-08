@@ -4,6 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Alumno } from '../models/alumno';
 import { Materia } from '../models/materia';
 import { MateriaCursada } from '../models/materiaCursada';
+import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class AlumnoService {
 
   getMateria(clave: string) {
     return this.http.get<Materia>(this.API + '/materias/' + clave);
+  }
+
+  getMapa () {
+    return this.http.get<Materia[]>(this.API + '/alumnos/' + this.matricula + '/mapa_materias');
   }
 
   getMateriasCursadas (matricula) {

@@ -27,4 +27,8 @@ export class AlumnoMateriaComponent implements OnInit, OnChanges {
   ngOnChanges () {
   }
 
+  onMarca () {
+
+  }
+
 }

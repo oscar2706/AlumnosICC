@@ -14,7 +14,7 @@ export class AlumnoMateriasComponent implements OnInit, OnDestroy {
   constructor(private alumnoService: AlumnoService) { }
 
   ngOnInit () {
-    this.subscription = this.alumnoService.getMaterias().subscribe(data => {
+    this.subscription = this.alumnoService.getMapa().subscribe(data => {
       this.materias = data;
     });
   }

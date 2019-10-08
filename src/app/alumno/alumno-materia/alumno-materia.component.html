@@ -3,7 +3,8 @@
       'card-cienciasBasicas': datos.area === 'Ciencias básicas',
       'card-ingenieria': datos.area === 'Ingeniería en computación',
       'card-tecnologia': datos.area === 'Tecnología',
-      'card-general': datos.area === 'Formación general universitaria'
+      'card-general': datos.area === 'Formación general universitaria',
+      'card-desit': datos.area === 'Optativa DESIT'
   }"
   (mouseover)="dentro = true" (mouseleave)="dentro = false">
   <i class="material-icons done m-0 p-0" *ngIf="datos.marcada" >done</i>

@@ -1,0 +1,90 @@
+.cienciasBasicas {
+  background-color: #E9FDC9
+}
+
+.ingenieria {
+  background-color: #CDDFFF
+}
+
+.tecnologia {
+  background-color: #D4C7E8
+}
+
+.general {
+  background-color: #FFFFCB
+}
+
+.card-cienciasBasicas {
+  background-color: #E9FDC9;
+  border-color    : #B2C299;
+  color           : #49525B;
+}
+
+.card-ingenieria {
+  background-color: #CDDFFF;
+  border-color    : #A3B2CC;
+  color           : #49525B;
+}
+
+.card-tecnologia {
+  background-color: #D4C7E8;
+  border-color    : #A69CB6;
+  color           : #49525B;
+}
+
+.card-general {
+  background-color: #FFFFCB;
+  border-color    : #CCCCA3;
+  color           : #49525B;
+}
+
+/* Material Icons */
+.material-icons {
+  margin     : 0px;
+  padding    : 0px;
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style : normal;
+  font-size  : 24px;
+  /* Preferred icon size */
+  position      : absolute;
+  bottom        : 0;
+  left          : 1rem;
+  line-height   : 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap     : normal;
+  white-space   : nowrap;
+  direction     : ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.material-icons.md-18 {
+  font-size: 18px;
+}
+
+.material-icons.md-24 {
+  font-size: 24px;
+}
+
+.material-icons.md-36 {
+  font-size: 36px;
+}
+
+.material-icons.md-48 {
+  font-size: 48px;
+}
+
+.material-icons.done {
+  color: #006A00;
+}

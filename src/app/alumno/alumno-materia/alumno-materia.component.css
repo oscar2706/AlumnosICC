@@ -38,6 +38,12 @@
   color           : #49525B;
 }
 
+.card-desit {
+  background-color: #F49761;
+  border-color    : #F47931;
+  color           : #49525B;
+}
+
 /* Material Icons */
 .material-icons {
   margin     : 0px;

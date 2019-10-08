@@ -1,61 +1,75 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, PipeTransform } from '@angular/core';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { AdministradorService } from '../../services/administrador.service';
 import { Alumno } from '../../models/alumno';
+import { DecimalPipe } from "@angular/common";
+import { FormControl } from "@angular/forms";
+import { Observable } from "rxjs";
+import { map, startWith } from "rxjs/operators";
 
 @Component({
   selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Exito</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>La contraseña se restauro correctamente</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Ok</button>
-    </div>
-  `
+  templateUrl: './modal-contasenaRestaurada.component.html'
+  
 })
 export class NgbdModalContent {
   name:string;
 
-  constructor(public activeModal: NgbActiveModal) {}
+  constructor(public activeModal: NgbActiveModal, private administradorService: AdministradorService) {}
 }
 
 @Component({
   selector: 'app-central',
   templateUrl: './central.component.html',
-  styleUrls: ['./central.component.css']
+  styleUrls: ['./central.component.css'], 
+  providers: [DecimalPipe]
+  
 })
 export class CentralComponent implements OnInit {
   alumnos: Alumno[];
   pageSize: number = 30;
   alumnoSeleccionado:string;
+  nombreSeleccionado: string;
   defseccion:number=0;
+  seleccionAlumno:number=0;
+  alumnos$: Observable<Alumno[]>;
+  filter = new FormControl("");
 
-  constructor(private modalService: NgbModal, private administradorService: AdministradorService) { }
+  constructor( private pipe: DecimalPipe, private modalService: NgbModal, private administradorService: AdministradorService) { }
 
   ngOnInit() {
     this.administradorService.getAlumnos().subscribe(data => {
       this.alumnos = data;
+      this.alumnos$ = this.filter.valueChanges.pipe(
+        startWith(""),
+        map(text => this.search(text, this.pipe))
+      );
     });
   }
 
-  seleccionarAlumno(matricula) {
+  seleccionarAlumno(matricula, nombre) {
     if(this.alumnoSeleccionado == matricula) {
       this.alumnoSeleccionado = "";
+      this.nombreSeleccionado=nombre;
+      this.seleccionAlumno=0;
     }
     else {
       this.alumnoSeleccionado = matricula;
+      this.nombreSeleccionado=nombre;
+      this.seleccionAlumno=1;
     }
+  }
+    search(text: string, pipe: PipeTransform): Alumno[] {
+      return this.alumnos.filter(alumno => {
+        const term = text.toLowerCase();
+        return alumno.nombre.toLowerCase().includes(term);
+      });
+  
   }
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
+    modalRef.componentInstance.name = this.nombreSeleccionado;
     this.prueba();
   }
 

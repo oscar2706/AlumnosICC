@@ -24,17 +24,14 @@
             <div class="col-sm-12 col-lg-5 col-md-5 h5">
                Periodo
               </div>
-              <div class="col-sm-12 col-lg-7 col-md-7 h5">
-              <div class="dropdown">
-                  <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Elige un periodo
-                  </button>
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" >Otoño</a>
-                    <a class="dropdown-item" >Primavera</a>
-                    <a class="dropdown-item" >Verano</a>
-                  </div>
-                </div>
+              <div class="col-sm-12 col-lg-7 col-md-7 h5">                  
+                  <select class="form-control" style="width: 100" [(ngModel)]="defperiodo">
+                    <option [ngValue]="0">Elige un periodo</option>  
+                    <option [ngValue]="1">Otoño</option>
+                    <option [ngValue]="2">Primavera</option>
+                    <option [ngValue]="3">Verano</option>
+                    </select>
+               
               </div>
         </div>
         
@@ -46,7 +43,7 @@
           <div class="col-sm-12 col-lg-7 col-md-6 h5">
               <div class="form-group">
                   <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model1" ngbDatepicker
+                    <input class="form-control" placeholder="DD/MM/AAAA" name="dp" [(ngModel)]="model1" ngbDatepicker
                       #a="ngbDatepicker">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary calendar" (click)="a.toggle()" type="button"></button>
@@ -63,7 +60,7 @@
           <div class="col-sm-12 col-lg-7 col-md-6 h5">
               <div class="form-group">
                   <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model2" ngbDatepicker
+                    <input class="form-control" placeholder="DD/MM/AAAA" name="dp" [(ngModel)]="model2" ngbDatepicker
                       #b="ngbDatepicker">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary calendar" (click)="b.toggle()" type="button"></button>

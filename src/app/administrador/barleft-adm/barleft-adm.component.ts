@@ -21,7 +21,8 @@ export class BarleftAdmComponent implements OnInit {
   constructor(private administradorService: AdministradorService) {}
 
   ngOnInit() {}
-
+  defperiodo:number=0;
+  
   prueba() {
     if (this.opcion == 1) {
       console.log("Prueba: " + this.opcion);
@@ -29,6 +30,10 @@ export class BarleftAdmComponent implements OnInit {
         this.model1.year + "-" + this.model1.month + "-" + this.model1.day;
       this.fecha_cierre =
         this.model2.year + "-" + this.model2.month + "-" + this.model2.day;
+
+        console.log(this.fecha_inicio);
+        console.log(this.fecha_cierre);
+
       this.administradorService
         .createProyeccion(this.fecha_inicio, this.fecha_cierre)
         .subscribe(data => {

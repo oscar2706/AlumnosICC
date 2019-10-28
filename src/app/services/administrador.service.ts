@@ -39,6 +39,6 @@ export class AdministradorService {
   getResultadosProyeccion(fecha_inicio, fecha_fin) {
     let parametros = new HttpParams().set("fecha_inicio", fecha_inicio).set("fecha_fin", fecha_fin);
 
-    return this.http.get(this.API + '/materias_proyecciones', {params: parametros});
+    return this.http.get<any[]>(this.API + '/materias_proyecciones', {params: parametros});
   }
 }

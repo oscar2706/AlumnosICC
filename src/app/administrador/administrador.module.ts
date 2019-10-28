@@ -5,7 +5,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { BarLeftComponent } from "./bar-left/bar-left.component";
 import { CentralComponent, NgbdModalContent } from "./central/central.component";
-import { Central2Component, NgbdModalContent2 } from "./central2/central2.component";
+import { Central2Component, ModalReporte } from "./central2/central2.component";
 import { ResetPasswdComponent } from "./reset-passwd/reset-passwd.component";
 import { ProyeccionesComponent } from "./proyecciones/proyecciones.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,10 +22,10 @@ import { AppRoutingModule } from '../app-routing.module';
     ProyeccionesComponent,
     BarleftAdmComponent,
     NgbdModalContent, 
-    NgbdModalContent2
+    ModalReporte
   ],
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, NgxPaginationModule, AppRoutingModule],
   exports: [ResetPasswdComponent, ProyeccionesComponent],
-  entryComponents: [NgbdModalContent, NgbdModalContent2]
+  entryComponents: [NgbdModalContent, ModalReporte]
 })
 export class AdministradorModule {}

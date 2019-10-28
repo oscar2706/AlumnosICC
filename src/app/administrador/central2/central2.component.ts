@@ -6,53 +6,36 @@ import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngbd-modal-content',
-  template: `
-    <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
-      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <p>Hello, {{name}}!</p>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
-    </div>
-  `
+  templateUrl: './modal-reporte.html'
 })
-export class NgbdModalContent2 {
-  @Input() name;
-
-  constructor(public activeModal: NgbActiveModal) {}
-}
-
-@Component({
-  selector: 'app-central2',
-  templateUrl: './central2.component.html',
-  styleUrls: ['./central2.component.css']
-})
-export class Central2Component implements OnInit {
-  proyecciones: Proyeccion[];
-  pageSize: number = 10;
+export class ModalReporte implements OnInit {
+  @Input() fecha_inicio;
+  @Input() fecha_fin;
+  materias: string[];
+  totales: number[];
   chart = [];
 
-  constructor(private administrador: AdministradorService, private modalService: NgbModal) { }
+  constructor(private administrador: AdministradorService, public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
-    this.administrador.getResultadosProyeccion('2019-08-01', '2019-10-01').subscribe(data => {
-      console.log(data)
-    });
-    this.administrador.getProyecciones().subscribe(data => {
-      this.proyecciones = data;
+    this.administrador.getResultadosProyeccion(this.fecha_inicio, this.fecha_fin).subscribe(data => {
+      this.materias = new Array(data.length);
+      this.totales = new Array(data.length);
+      var i = 0;
+
+      data.forEach(element => {
+        this.materias[i] = element.nombre;
+        this.totales[i] = element.total;
+        i++;
+      });
 
       this.chart = new Chart('canvas', {
         type: 'bar',
         data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: this.materias,
           datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
+            label: 'Materias Proyección',
+            data: this.totales,
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
@@ -84,9 +67,28 @@ export class Central2Component implements OnInit {
       });
     });
   }
+}
 
-  open() {
-    const modalRef = this.modalService.open(NgbdModalContent2);
-    modalRef.componentInstance.name = 'World';
+@Component({
+  selector: 'app-central2',
+  templateUrl: './central2.component.html',
+  styleUrls: ['./central2.component.css']
+})
+export class Central2Component implements OnInit {
+  proyecciones: Proyeccion[];
+  pageSize: number = 10;
+
+  constructor(private administrador: AdministradorService, private modalService: NgbModal) { }
+
+  ngOnInit() {
+    this.administrador.getProyecciones().subscribe(data => {
+      this.proyecciones = data;
+    });
+  }
+
+  openGraph(fecha_inicio, fecha_fin) {
+    const modalRef = this.modalService.open(ModalReporte);
+    modalRef.componentInstance.fecha_inicio = fecha_inicio;
+    modalRef.componentInstance.fecha_fin = fecha_fin;
   }
 }

@@ -23,7 +23,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let proyeccion of proyecciones | paginate: {itemsPerPage: pageSize, currentPage: p}" (click)="open()"> 
+            <tr *ngFor="let proyeccion of proyecciones | paginate: {itemsPerPage: pageSize, currentPage: p}"
+              (click)="openGraph(proyeccion.fecha_inicio, proyeccion.fecha_fin)">
               <th scope="row">{{ proyeccion.id }}</th>
               <td>{{ proyeccion.fecha_inicio | date:'dd/MM/yyyy' }}</td>
               <td>{{ proyeccion.fecha_fin | date:'dd/MM/yyyy' }}</td>
@@ -38,10 +39,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div>
-  <canvas id="canvas">
-    {{ chart }}
-  </canvas>
 </div>

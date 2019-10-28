@@ -1,7 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AdministradorService } from '../../services/administrador.service';
 import { Proyeccion } from '../../models/proyeccion';
 import { Chart } from 'chart.js';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
+@Component({
+  selector: 'ngbd-modal-content',
+  template: `
+    <div class="modal-header">
+      <h4 class="modal-title">Hi there!</h4>
+      <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Hello, {{name}}!</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+    </div>
+  `
+})
+export class NgbdModalContent2 {
+  @Input() name;
+
+  constructor(public activeModal: NgbActiveModal) {}
+}
 
 @Component({
   selector: 'app-central2',
@@ -13,7 +37,7 @@ export class Central2Component implements OnInit {
   pageSize: number = 10;
   chart = [];
 
-  constructor(private administrador: AdministradorService) { }
+  constructor(private administrador: AdministradorService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.administrador.getResultadosProyeccion('2019-08-01', '2019-10-01').subscribe(data => {
@@ -59,8 +83,10 @@ export class Central2Component implements OnInit {
         }
       });
     });
+  }
 
-    
-
+  open() {
+    const modalRef = this.modalService.open(NgbdModalContent2);
+    modalRef.componentInstance.name = 'World';
   }
 }

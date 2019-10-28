@@ -76,6 +76,36 @@ export class ModalReporte implements OnInit {
               'rgba(155, 0, 255, 0.5)',
               'rgba(35, 0, 255, 0.5)',
               'rgba(0, 120, 255, 0.5)',
+              'rgba(0, 255, 255, 0.5)',
+              'rgba(0, 255, 93, 0.5)',
+              'rgba(54, 255, 0, 0.5)',
+              'rgba(220, 255, 0, 0.5)',
+              'rgba(255, 170, 0, 0.5)',
+              'rgba(255, 0, 0, 0.5)',
+              'rgba(255, 0, 180, 0.5)',
+              'rgba(155, 0, 255, 0.5)',
+              'rgba(35, 0, 255, 0.5)',
+              'rgba(0, 120, 255, 0.5)',
+              'rgba(0, 255, 255, 0.5)',
+              'rgba(0, 255, 93, 0.5)',
+              'rgba(54, 255, 0, 0.5)',
+              'rgba(220, 255, 0, 0.5)',
+              'rgba(255, 170, 0, 0.5)',
+              'rgba(255, 0, 0, 0.5)',
+              'rgba(255, 0, 180, 0.5)',
+              'rgba(155, 0, 255, 0.5)',
+              'rgba(35, 0, 255, 0.5)',
+              'rgba(0, 120, 255, 0.5)',
+              'rgba(0, 255, 255, 0.5)',
+              'rgba(0, 255, 93, 0.5)',
+              'rgba(54, 255, 0, 0.5)',
+              'rgba(220, 255, 0, 0.5)',
+              'rgba(255, 170, 0, 0.5)',
+              'rgba(255, 0, 0, 0.5)',
+              'rgba(255, 0, 180, 0.5)',
+              'rgba(155, 0, 255, 0.5)',
+              'rgba(35, 0, 255, 0.5)',
+              'rgba(0, 120, 255, 0.5)',
               'rgba(0, 255, 255, 0.5)'
             ],
             borderColor: [
@@ -119,11 +149,51 @@ export class ModalReporte implements OnInit {
               'rgba(35, 0, 255, 1)',
               'rgba(0, 120, 255, 1)',
               'rgba(0, 255, 255, 1)',
+              'rgba(0, 255, 93, 1)',
+              'rgba(54, 255, 0, 1)',
+              'rgba(220, 255, 0, 1)',
+              'rgba(255, 170, 0, 1)',
+              'rgba(255, 0, 0, 1)',
+              'rgba(255, 0, 180, 1)',
+              'rgba(155, 0, 255, 1)',
+              'rgba(35, 0, 255, 1)',
+              'rgba(0, 120, 255, 1)',
+              'rgba(0, 255, 255, 1)',
+              'rgba(0, 255, 93, 1)',
+              'rgba(54, 255, 0, 1)',
+              'rgba(220, 255, 0, 1)',
+              'rgba(255, 170, 0, 1)',
+              'rgba(255, 0, 0, 1)',
+              'rgba(255, 0, 180, 1)',
+              'rgba(155, 0, 255, 1)',
+              'rgba(35, 0, 255, 1)',
+              'rgba(0, 120, 255, 1)',
+              'rgba(0, 255, 255, 1)',
+              'rgba(0, 255, 93, 1)',
+              'rgba(54, 255, 0, 1)',
+              'rgba(220, 255, 0, 1)',
+              'rgba(255, 170, 0, 1)',
+              'rgba(255, 0, 0, 1)',
+              'rgba(255, 0, 180, 1)',
+              'rgba(155, 0, 255, 1)',
+              'rgba(35, 0, 255, 1)',
+              'rgba(0, 120, 255, 1)',
+              'rgba(0, 255, 255, 1)'
             ],
             borderWidth: 1
           }]
         },
         options: {
+          responsive: true,
+          legend: {
+            onClick: (e) => e.stopPropagation(),
+            labels: {
+              boxWidth: 0
+            }
+          },
+          tooltips: {
+            displayColors: false
+          },
           scales: {
             yAxes: [{
               ticks: {
@@ -155,7 +225,7 @@ export class Central2Component implements OnInit {
   }
 
   openGraph(fecha_inicio, fecha_fin) {
-    const modalRef = this.modalService.open(ModalReporte, {size: 'lg'});
+    const modalRef = this.modalService.open(ModalReporte, { size: 'xl' });
     modalRef.componentInstance.fecha_inicio = fecha_inicio;
     modalRef.componentInstance.fecha_fin = fecha_fin;
   }

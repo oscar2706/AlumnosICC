@@ -16,6 +16,9 @@ export class Central2Component implements OnInit {
   constructor(private administrador: AdministradorService) { }
 
   ngOnInit() {
+    this.administrador.getResultadosProyeccion('2019-08-01', '2019-10-01').subscribe(data => {
+      console.log(data)
+    });
     this.administrador.getProyecciones().subscribe(data => {
       this.proyecciones = data;
 

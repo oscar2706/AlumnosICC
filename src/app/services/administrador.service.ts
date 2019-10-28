@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Proyeccion } from '../models/proyeccion';
 import { Avance } from '../models/avance';
@@ -34,5 +34,11 @@ export class AdministradorService {
 
   createAvance(fecha_inicio, fecha_cierre) {
     return this.http.post<Avance>(this.API + '/avances', {'fecha_inicio': fecha_inicio, 'fecha_fin': fecha_cierre});
+  }
+
+  getResultadosProyeccion(fecha_inicio, fecha_fin) {
+    let parametros = new HttpParams().set("fecha_inicio", fecha_inicio).set("fecha_fin", fecha_fin);
+
+    return this.http.get(this.API + '/materias_proyecciones', {params: parametros});
   }
 }

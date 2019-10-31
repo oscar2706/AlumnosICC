@@ -12,6 +12,7 @@ export class AlumnoPanelComponent implements OnInit {
   @Input() materiasSeleccionadas: string[];
   @Input() ventanaAbierta:number;
   @Input() matricula: string;
+  porcentajeAvance: number;
   alumno: Alumno;
 
   constructor(private alumnoService: AlumnoService) { }
@@ -19,6 +20,12 @@ export class AlumnoPanelComponent implements OnInit {
   ngOnInit() {
     this.alumnoService.getAlumno(this.matricula).subscribe(data => {
       this.alumno = data;
+    });
+
+    this.alumnoService.getCredits(this.matricula).subscribe(credits => {
+      console.log('credits');
+      console.log(credits);
+      this.porcentajeAvance = credits/281*100;
     });
   }
 

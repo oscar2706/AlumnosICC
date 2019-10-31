@@ -62,6 +62,10 @@ export class AlumnoService {
     return this.http.get<boolean>(this.API + '/materias_cursadas/marcada');
   }
 
+  getCredits (matricula) {
+    return this.http.get<number>(this.API + '/alumnos/' + matricula + '/creditos');
+  }
+
   createMateriaCursada (matricula, clave) {
     return this.http.post<boolean>(this.API + '/materias_cursadas', {'matricula': matricula, 'clave': clave});
   }

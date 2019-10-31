@@ -7,6 +7,7 @@ import { MateriaCursada } from '../models/materiaCursada';
 import { toInteger } from '@ng-bootstrap/ng-bootstrap/util/util';
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
+import { Avance } from '../models/avance';
 
 @Injectable({
   providedIn: 'root'
@@ -117,5 +118,8 @@ export class AlumnoService {
     });
   }
 
-  //Proyeccion
+  // Avances
+  getFechasAvance () {
+    return this.http.get<Avance[]>(this.API + '/avances');
+  }
 }

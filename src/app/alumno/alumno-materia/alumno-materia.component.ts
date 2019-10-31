@@ -7,7 +7,7 @@ import { AlumnoService } from '../../services/alumno.service'
   templateUrl: './alumno-materia.component.html',
   styleUrls: ['./alumno-materia.component.css']
 })
-export class AlumnoMateriaComponent {
+export class AlumnoMateriaComponent implements OnInit {
   @Input() datos: Materia = {
     clave: 'a',
     nombre: 'a',
@@ -19,8 +19,21 @@ export class AlumnoMateriaComponent {
   };
 
   dentro = false;
+  enFechaAvance: boolean = false;
 
   constructor (private alumnoService: AlumnoService) { }
+
+  ngOnInit () {
+    this.alumnoService.getFechasAvance().subscribe(avance => {
+      let fechaActual = new Date();
+      avance.forEach(element => {
+        let inicio = new Date(element.fecha_inicio);
+        let fin = new Date(element.fecha_fin);
+        if (fechaActual >= inicio && fechaActual <= fin)
+          this.enFechaAvance = true;
+      });
+    });
+  }
 
   onMarca () {
     if (this.datos.marcada) {

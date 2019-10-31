@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AlumnoService } from '../../services/alumno.service';
 import { Alumno } from '../../models/alumno';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-alumno-panel',
@@ -13,9 +14,10 @@ export class AlumnoPanelComponent implements OnInit {
   @Input() ventanaAbierta:number;
   @Input() matricula: string;
   porcentajeAvance: number;
+  enFechaAvance: boolean = false;
   alumno: Alumno;
 
-  constructor(private alumnoService: AlumnoService) { }
+  constructor(private alumnoService: AlumnoService, private datePipe: DatePipe) { }
 
   ngOnInit() {
     this.alumnoService.getAlumno(this.matricula).subscribe(data => {
@@ -23,9 +25,17 @@ export class AlumnoPanelComponent implements OnInit {
     });
 
     this.alumnoService.getCredits(this.matricula).subscribe(credits => {
-      console.log('credits');
-      console.log(credits);
       this.porcentajeAvance = credits/281*100;
+    });
+
+    this.alumnoService.getFechasAvance().subscribe(avance => {
+      let fechaActual = new Date();
+      avance.forEach(element => {
+        let inicio = new Date(element.fecha_inicio);
+        let fin = new Date(element.fecha_fin);
+        if (fechaActual >= inicio && fechaActual <= fin)
+          this.enFechaAvance = true;
+      });
     });
   }
 

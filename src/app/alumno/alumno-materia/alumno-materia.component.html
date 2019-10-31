@@ -12,15 +12,14 @@
     {{datos.nombre}}
   </div>
   <div class="card-footer p-0 m-0 text-right bg-light justify-content">
-    <div class="row justify-content-center" *ngIf="dentro == true && !datos.marcada">
+    <div class="row justify-content-center" *ngIf="dentro == true && enFechaAvance && !datos.marcada">
       <button class="btn btn-success p-1" type="button" (click)="onMarca()">Marcar</button>
     </div>
-    <div class="row justify-content-center" *ngIf="dentro == true && datos.marcada">
+    <div class="row justify-content-center" *ngIf="dentro == true && enFechaAvance && datos.marcada">
       <button class="btn btn-danger p-1" type="button" (click)="onMarca()">Desmarcar</button>
     </div>
     <p class="p-0 pr-4 m-0">
       {{datos.creditos}}
-      <!-- {{datos.marcada}} -->
     </p>
   </div>
 </div>

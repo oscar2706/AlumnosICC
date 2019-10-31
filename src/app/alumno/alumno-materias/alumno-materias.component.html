@@ -122,7 +122,11 @@
       </td>
       <td class="px-1"></td>
       <td class="px-1">
-        <app-alumno-materia></app-alumno-materia>
+        <div class="card text-center text-center mx-0 px-0">
+          <div class="card-body px-1 py-1">
+            <a routerLink="/alumno/optativas" routerLinkActive="active">Optativa Desit</a>
+          </div>
+        </div>
       </td>
     </tr>
     <tr>
@@ -147,10 +151,10 @@
         <app-alumno-materia [datos]="getMateria('ICCS 252')"></app-alumno-materia>
       </td>
       <td class="px-1">
-        <app-alumno-materia></app-alumno-materia>
+        <app-alumno-materia [datos]="getMateria('SSCC 100')"></app-alumno-materia>
       </td>
       <td class="px-1">
-        <app-alumno-materia></app-alumno-materia>
+        <app-alumno-materia [datos]="getMateria('PPCc 101')"></app-alumno-materia>
       </td>
     </tr>
     <tr>
@@ -181,10 +185,18 @@
       <td class="px-1"></td>
       <td class="px-1"></td>
       <td class="px-1">
-        <app-alumno-materia></app-alumno-materia>
+          <div class="card text-center text-center mx-0 px-0">
+              <div class="card-body px-1 py-1">
+                <a routerLink="/alumno/optativas" routerLinkActive="active">Optativa 1</a>
+              </div>
+            </div>
       </td>
       <td class="px-1">
-        <app-alumno-materia></app-alumno-materia>
+          <div class="card text-center text-center mx-0 px-0">
+              <div class="card-body px-1 py-1">
+                <a routerLink="/alumno/optativas" routerLinkActive="active">Optativa 2</a>
+              </div>
+            </div>
       </td>
       <td class="px-1">
         <app-alumno-materia [datos]="getMateria('IDDS 002')"></app-alumno-materia>

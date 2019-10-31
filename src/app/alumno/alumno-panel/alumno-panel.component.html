@@ -31,10 +31,10 @@
       </div>
       <div class="row my-4">
         <div class="col-12">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==1 && enFechaAvance">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==1 && enFechaAvance && !avance_guardado">
             Guardar
           </button>
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==2 && enFechaAvance">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==2 && enFechaAvance && !avance_guardado">
             Guardar
           </button>
           <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==3 && alumno.proyeccion_realizada == 0">

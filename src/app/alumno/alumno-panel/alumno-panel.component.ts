@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AlumnoService } from '../../services/alumno.service';
 import { Alumno } from '../../models/alumno';
 import { DatePipe } from '@angular/common';
@@ -13,6 +13,8 @@ export class AlumnoPanelComponent implements OnInit {
   @Input() materiasSeleccionadas: string[];
   @Input() ventanaAbierta:number;
   @Input() matricula: string;
+  @Output() avanceGuardado = new EventEmitter<boolean>();
+  avance_guardado = false;
   porcentajeAvance: number;
   enFechaAvance: boolean = false;
   alumno: Alumno;
@@ -42,8 +44,12 @@ export class AlumnoPanelComponent implements OnInit {
   guardado() {
     switch(this.ventanaAbierta) {
       case 1:
+        this.avanceGuardado.emit(true);
+        this.avance_guardado = true;
         break;
       case 2:
+        this.avanceGuardado.emit(true);
+        this.avance_guardado = true;
         break;
       case 3:
         this.alumnoService.updateAlumnoProyeccionRealizada(this.alumno.matricula).subscribe();

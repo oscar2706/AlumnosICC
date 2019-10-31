@@ -10,6 +10,7 @@ import { Alumno } from '../../models/alumno';
 export class AlumnoVentanaMateriasComponent implements OnInit {
   matricula: string;
   alumno: Alumno;
+  vistaSeleccionada = 1;
 
   constructor(private alumnoService: AlumnoService) { }
 

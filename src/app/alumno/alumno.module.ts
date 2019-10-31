@@ -14,6 +14,7 @@ import { AlumnoVentanaMateriasComponent } from "./alumno-ventana-materias/alumno
 import { AlumnoVentanaOptativasComponent } from "./alumno-ventana-optativas/alumno-ventana-optativas.component";
 import { AlumnoVentanaProyeccionComponent } from "./alumno-ventana-proyeccion/alumno-ventana-proyeccion.component";
 import { AppRoutingModule } from '../app-routing.module';
+import { AlumnoMateriasResponsivoComponent } from './alumno-materias-responsivo/alumno-materias-responsivo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppRoutingModule } from '../app-routing.module';
     AlumnoOptativasComponent,
     AlumnoVentanaMateriasComponent,
     AlumnoVentanaOptativasComponent,
-    AlumnoVentanaProyeccionComponent
+    AlumnoVentanaProyeccionComponent,
+    AlumnoMateriasResponsivoComponent
   ],
   imports: [CommonModule, NgbModule, FormsModule, ReactiveFormsModule, AppRoutingModule,
     NgxPaginationModule],

@@ -5,7 +5,20 @@
       <app-alumno-panel [ventanaAbierta]="1" [matricula]="matricula"></app-alumno-panel>
     </div>
     <div class="col-sm-12 col-md-8 col-lg-9 overflow-auto">
-      <app-alumno-materias></app-alumno-materias>
+      <div class="btn-group btn-group-toggle m-2" ngbRadioGroup name="radioBasic" [(ngModel)]="vistaSeleccionada">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="1"> Mapa
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" value="2"> Responsivo
+        </label>
+      </div>
+        <div *ngIf="vistaSeleccionada == 1">
+          <app-alumno-materias></app-alumno-materias>
+        </div>
+        <div *ngIf="vistaSeleccionada == 2">
+          <app-alumno-materias-responsivo></app-alumno-materias-responsivo>
+        </div>
     </div>
   </div>
 </div>

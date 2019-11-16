@@ -16,12 +16,15 @@ export class AlumnoPanelComponent implements OnInit {
   @Output() avanceGuardado = new EventEmitter<boolean>();
   avance_guardado = false;
   porcentajeAvance: number;
+  semestreSeleccionado: number;
   enFechaAvance: boolean = false;
   alumno: Alumno;
 
   constructor(private alumnoService: AlumnoService, private datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.semestreSeleccionado = 1;
+
     this.alumnoService.getAlumno(this.matricula).subscribe(data => {
       this.alumno = data;
     });
@@ -63,5 +66,10 @@ export class AlumnoPanelComponent implements OnInit {
         }
         break;
     }
+  }
+
+  cambioSemestre(valor) {
+    console.log(valor);
+    this.semestreSeleccionado = valor; 
   }
 }

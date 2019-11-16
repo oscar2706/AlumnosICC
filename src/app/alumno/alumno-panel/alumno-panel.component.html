@@ -26,18 +26,74 @@
           Progreso:
         </div>
         <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6">
-          {{porcentajeAvance | number:'1.0-1'}}%
+          <div class="row">
+            <div>
+              {{porcentajeAvance | number:'1.0-1'}}%/
+            </div>
+            <div *ngIf="semestreSeleccionado == 1">
+              8.5%
+            </div>
+            <div *ngIf="semestreSeleccionado == 2">
+              19.9%
+            </div>
+            <div *ngIf="semestreSeleccionado == 3">
+              32%
+            </div>
+            <div *ngIf="semestreSeleccionado == 4">
+              42%
+            </div>
+            <div *ngIf="semestreSeleccionado == 5">
+              52.7%
+            </div>
+            <div *ngIf="semestreSeleccionado == 6">
+              63%
+            </div>
+            <div *ngIf="semestreSeleccionado == 7">
+              73.7%
+            </div>
+            <div *ngIf="semestreSeleccionado == 8">
+              86.5%
+            </div>
+            <div *ngIf="semestreSeleccionado == 9">
+              95%
+            </div>
+            <div *ngIf="semestreSeleccionado == 10">
+              100%
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 h5">
+          Semestre:
+        </div>
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-6 h5">
+          <select class="custom-select" (change)="cambioSemestre($event.target.value)">
+            <option class="custom-select" value="1">1</option>
+            <option class="custom-select" value="2">2</option>
+            <option class="custom-select" value="3">3</option>
+            <option class="custom-select" value="4">4</option>
+            <option class="custom-select" value="5">5</option>
+            <option class="custom-select" value="6">6</option>
+            <option class="custom-select" value="7">7</option>
+            <option class="custom-select" value="8">8</option>
+            <option class="custom-select" value="9">9</option>
+            <option class="custom-select" value="10">10</option>
+          </select>
         </div>
       </div>
       <div class="row my-4">
         <div class="col-12">
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==1 && enFechaAvance && !avance_guardado">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"
+            *ngIf="ventanaAbierta==1 && enFechaAvance && !avance_guardado">
             Guardar
           </button>
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==2 && enFechaAvance && !avance_guardado">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"
+            *ngIf="ventanaAbierta==2 && enFechaAvance && !avance_guardado">
             Guardar
           </button>
-          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal" *ngIf="ventanaAbierta==3 && alumno.proyeccion_realizada == 0">
+          <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#exampleModal"
+            *ngIf="ventanaAbierta==3 && alumno.proyeccion_realizada == 0">
             Guardar
           </button>
         </div>
